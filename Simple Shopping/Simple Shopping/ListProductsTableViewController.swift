@@ -15,10 +15,6 @@ class ListProductsTableViewController: UITableViewController {
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Data.plist")
     var index = 0
     
-    @IBOutlet weak var image: UIImageView!
-    
-    @IBOutlet weak var label: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +26,7 @@ class ListProductsTableViewController: UITableViewController {
             let delete = UIAlertAction(title: "Delete", style: .default, handler: { (action) in
                 self.data.lists[self.index].names.remove(at: indexPath.row)
                 self.data.lists[self.index].price.remove(at: indexPath.row)
+                self.data.lists[self.index].quantity.remove(at: indexPath.row)
                 self.data.lists[self.index].url.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.saveData()
@@ -50,15 +47,16 @@ class ListProductsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.lists[index].name.count
+        return data.lists[index].names.count
     }
     
     
     @IBAction func AddProduct(_ sender: Any) {
-        data.lists[index].name.append("")
+        data.lists[index].names.append("")
         data.lists[index].url.append("")
-        data.lists[index].price.append(0)
-        performSegue(withIdentifier: "newlist", sender: self)
+        data.lists[index].price.append("")
+        data.lists[index].quantity.append("")
+        performSegue(withIdentifier: "new", sender: self)
         saveData()
         
     }
@@ -66,18 +64,19 @@ class ListProductsTableViewController: UITableViewController {
     // Populate rows and delete a player if the information is incomplete
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath)
-        //let image = cell.viewWithTag(1) as! UIImageView
-        
-        let url = URL(string: "https://images-na.ssl-images-amazon.com/images/I/81xQBb5jRzL._SY355_.jpg")!
-        let data = try? Data(contentsOf: url)
-        
-        if let imageData = data {
-            let imagee = UIImage(data: imageData)
-            cell.imageView?.image = imagee
+       
+        if indexPath.row < data.lists[index].url.count {
+            let url = URL(string: data.lists[index].url[indexPath.row])!
+            let dataa = try? Data(contentsOf: url)
+            print(url)
+            if let imageData = dataa {
+                let imagee = UIImage(data: imageData)
+                cell.imageView?.image = imagee
+            }
+            cell.textLabel?.textAlignment = .left
+            cell.textLabel?.text = data.lists[index].names[indexPath.row] + " x" + data.lists[index].quantity[indexPath.row] + " " + data.lists[index].price[indexPath.row]
         }
-        cell.textLabel?.textAlignment = .left
-
-        cell.textLabel?.text = "test"
+        
         return cell
     }
     
@@ -108,6 +107,13 @@ class ListProductsTableViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
             }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "new" {
+            let NewProductTableViewController = segue.destination as! NewProductTableViewController
+            NewProductTableViewController.index = index
+            saveData()
         }
     }
 
