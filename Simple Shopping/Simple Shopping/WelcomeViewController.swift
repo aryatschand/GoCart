@@ -78,7 +78,6 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
         loadData()
         saveData()
         data = dataArray[0]
-        data.lists = []
         Welcome.text = "Welcome to the Go Cart app, " + data.name + "!"
         saveData()
     }
@@ -93,7 +92,8 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
             performSegue(withIdentifier: "Shop", sender: self)
         } else if ShopBtn.titleLabel!.text == "Connect to Shop" {
             if serial.connectedPeripheral == nil {
-                performSegue(withIdentifier: "ShowScanner", sender: self)
+                //performSegue(withIdentifier: "ShowScanner", sender: self)
+                performSegue(withIdentifier: "Shop", sender: self)
             } else {
                 serial.disconnect()
                 reloadView()
