@@ -13,7 +13,7 @@ Sleep, 250
 Send ^x
 
 outputVar = %Clipboard%
-Run https://saivedagiri.github.io/SimpleShoppingInternalTesting/key.html?key=%outputVar%
+Run https://www.gocartapp.tech/key.html?key=%outputVar%
 Send <!`t
 Sleep, 250
 count++
