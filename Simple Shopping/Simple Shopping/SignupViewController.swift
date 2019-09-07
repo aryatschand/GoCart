@@ -22,14 +22,20 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var PasswordVerify: UITextField!
     
+    @IBOutlet weak var First: UITextField!
+    
+    @IBOutlet weak var Last: UITextField!
+    
     
     @IBAction func Enter(_ sender: Any) {
         if Password.text == PasswordVerify.text {
             var username = Username.text
             var password = String(Password.text!.sha512())
+            var name = First.text! + " " + Last.text!
             
-            ref.child("users").childByAutoId().setValue(["username": username, "password": password])
+            ref.child("users").childByAutoId().setValue(["email": username, "password": password, "name": name])
             data.loggedin = true
+            data.name = name
             saveData()
             self.performSegue(withIdentifier: "aftersignup", sender: self)
         } else {

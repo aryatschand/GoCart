@@ -39,6 +39,8 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
     
     @IBOutlet weak var barButton: UIBarButtonItem!
     
+    @IBOutlet weak var Welcome: UILabel!
+    
     
     var dataArray = [SavedData]()
     var data: SavedData!
@@ -76,6 +78,7 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
         saveData()
         data = dataArray[0]
         data.lists = []
+        Welcome.text = "Welcome to the Go Cart app, " + data.name + "!"
         saveData()
     }
     
