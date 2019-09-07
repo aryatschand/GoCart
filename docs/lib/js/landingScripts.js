@@ -254,7 +254,9 @@ async function addItemSubmit() {
             rfidTag: document.querySelector(".rfidTagAddField").value,
             productName: document.querySelector(".productNameAddField").value,
             price: myPrice,
-            productImage: myImage
+            productImage: myImage,
+            inCart: false,
+            purchased: false
         }
         database.child(`organizations/${sessionStorage.getItem('organizationKey')}/rfidKeys`).push(value);
         document.getElementById('addItemsHere').removeChild(newRow);
@@ -342,7 +344,10 @@ async function addItemsCSV(tagNum, productName, price, productImage) {
             rfidTag: tagNum,
             productName: productName,
             price: myPrice,
-            productImage: myImage
+            productImage: myImage,
+            inCart: false,
+            purchased: false
+
         }
         database.child(`organizations/${sessionStorage.getItem('organizationKey')}/rfidKeys`).push(value);
     }
