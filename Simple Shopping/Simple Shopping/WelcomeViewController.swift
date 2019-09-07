@@ -41,6 +41,7 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
     
     @IBOutlet weak var Welcome: UILabel!
     
+    @IBOutlet weak var ShopBtn: UIButton!
     
     var dataArray = [SavedData]()
     var data: SavedData!
@@ -86,6 +87,20 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
         NotificationCenter.default.removeObserver(self)
     }
     
+    
+    @IBAction func ShopClicked(_ sender: Any) {
+        if ShopBtn.titleLabel!.text == "Shop Now" {
+            performSegue(withIdentifier: "Shop", sender: self)
+        } else if ShopBtn.titleLabel!.text == "Connect to Shop" {
+            if serial.connectedPeripheral == nil {
+                performSegue(withIdentifier: "ShowScanner", sender: self)
+            } else {
+                serial.disconnect()
+                reloadView()
+            }
+        }
+    }
+    
     @objc func keyboardWillShow(_ notification: Notification) {
         // animate the text field to stay above the keyboard
         var info = (notification as NSNotification).userInfo!
@@ -120,7 +135,6 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
             serial.sendMessageToDevice(data.nameArray[index])
             serial.sendMessageToDevice(",")
             serial.sendMessageToDevice(String(data.priceArray[index]))
-            print("sent")
         }
     }
     
@@ -131,16 +145,19 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
         if serial.isReady {
             navItem.title = serial.connectedPeripheral!.name
             barButton.title = "Disconnect"
+            ShopBtn.setTitle("Shop Now", for: .normal)
             barButton.tintColor = UIColor.red
             barButton.isEnabled = true
         } else if serial.centralManager.state == .poweredOn {
             navItem.title = "Bluetooth Serial"
             barButton.title = "Connect"
+            ShopBtn.setTitle("Connect to Shop", for: .normal)
             barButton.tintColor = view.tintColor
             barButton.isEnabled = true
         } else {
             navItem.title = "Bluetooth Serial"
             barButton.title = "Connect"
+            ShopBtn.setTitle("Connect to Shop", for: .normal)
             barButton.tintColor = view.tintColor
             barButton.isEnabled = false
         }

@@ -158,9 +158,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnZ-ed-Uqw">
                                 <rect key="frame" x="97" y="503" width="234" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Connect to Shop"/>
+                                <state key="normal" title="testing"/>
                                 <connections>
-                                    <segue destination="8nG-gz-fSZ" kind="show" id="6GN-it-igy"/>
+                                    <action selector="ShopClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="htg-Kn-av7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -175,10 +175,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ShopBtn" destination="hnZ-ed-Uqw" id="Uxh-nS-FuK"/>
                         <outlet property="Welcome" destination="BFV-Yc-BzB" id="fBl-lX-zXe"/>
                         <outlet property="barButton" destination="F8L-Yk-OfI" id="E9b-eA-7c1"/>
                         <outlet property="navItem" destination="0uS-CY-U7f" id="KWD-mB-cMB"/>
                         <segue destination="veK-I1-lG2" kind="show" identifier="ShowScanner" id="0gg-67-amx"/>
+                        <segue destination="8nG-gz-fSZ" kind="show" identifier="Shop" id="fK0-wk-9Wh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
