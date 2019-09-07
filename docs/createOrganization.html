@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Shopping - Create Organization</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=EB+Garamond|Karla:400,700|Quicksand|Raleway|Roboto+Slab|Oxygen|Rubik&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="lib/css/createOrganizationsStyles.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCC5RzjEekrY6bZT83_X57Dq4gpNAZPbb4",
+            authDomain: "simple-shopping-c016c.firebaseapp.com",
+            databaseURL: "https://simple-shopping-c016c.firebaseio.com",
+            projectId: "simple-shopping-c016c",
+            storageBucket: "simple-shopping-c016c.appspot.com",
+            messagingSenderId: "1080608411205",
+            appId: "1:1080608411205:web:4a118757fc4fa624"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="lib/js/createOrganization.js" defer></script>
+
+</head>
+
+<body>
+    <div id="logo1">
+        <h1 class="headerText">Simple</h1>
+        <img id="logo" src="assets/logo.png" alt="Simple Shopping" height="100" width="auto">
+        <h1 class="headerText">Shopping</h1>
+    </div>
+    <div class="page">
+    <div class="box">
+            <div id="error">
+            </div>
+            <div class="title">
+                <h1 id="title">Create your Organization</h1>
+            </div>
+            <form>
+                <div class="organizationInput">
+                    <input id="orgInput" placeholder="Organization Name">
+                </div>
+                <div class="break"></div>
+                <div class="break"></div>
+                <div class="submit">
+                    <button id="submit_button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- <div id="orgCreateText">
+        <h1>Choose an organization name: </h1>
+    </div>
+        <form>
+            <div>
+                <input id="organizationInput" placeholder="Organization Name">
+            </div>
+            <div class="break"></div>
+        
+            <div class="submit">
+                <button id="submit_button">Submit</button>
+            </div>
+        </form> -->
+   
+</body>
+
+</html>

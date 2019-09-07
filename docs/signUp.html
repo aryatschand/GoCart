@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link  href="https://fonts.googleapis.com/css?family=EB+Garamond|Karla:400,700|Quicksand|Raleway|Roboto+Slab|Oxygen|Rubik&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="lib/css/signUpStyles.css">
+    <title>Simple Shopping - Sign Up</title>
+    <meta name="google-signin-client_id" content="1080608411205-thol05ebahe7oq04p1su21rhjumv6vk1.apps.googleusercontent.com">
+    <script src="lib/js/bcrypt.min.js"></script>
+    <script src="lib/js/signUpScripts.js" defer></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCC5RzjEekrY6bZT83_X57Dq4gpNAZPbb4",
+            authDomain: "simple-shopping-c016c.firebaseapp.com",
+            databaseURL: "https://simple-shopping-c016c.firebaseio.com",
+            projectId: "simple-shopping-c016c",
+            storageBucket: "simple-shopping-c016c.appspot.com",
+            messagingSenderId: "1080608411205",
+            appId: "1:1080608411205:web:4a118757fc4fa624"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    </script>
+</head>
+
+<body>
+    <div id="logo1">
+        <h1 class="headerText">Simple</h1>
+        <a href="index.html">
+            <img id="logo" src="assets/logo.png" alt="Simple Shopping" height="100" width="auto">
+        </a>
+        <h1 class="headerText">Shopping</h1>
+    </div>
+    <div class="page">
+        <div class="box">
+            <div id="wrong">
+            </div>
+            <div class="title">
+                <h1>Sign Up</h1>
+            </div>
+            <form>
+                <div class="firstname">
+                    <input id="firstName" class="input" placeholder="First name">
+                </div>
+                <div class="break"></div>
+                <div class="lastname">
+                    <input id="lastName" class="input" placeholder="Last name">
+                </div>
+                <div class="break"></div>
+                <div class="email">
+                    <input id="emailInput" class="input" placeholder="johndoe@example.com">
+                </div>
+                <div class="break"></div>
+                <div class="password">
+                    <input type="password" class="input" id="passwordInput" placeholder="New password">
+                </div>
+                <div class="break"></div>
+                <div class="passwordCon">
+                    <input type="password" class="input" id="passwordConfirm" placeholder="Confirm password">
+                </div>
+                <div class="break"></div>
+                <div class="submit">
+                    <button id="submit_button">Submit</button>
+                </div>
+            </form>
+            <div class="or">
+                <h1>OR</h1>
+            </div>
+            <div id="my-signin2"></div>
+            <div class="break"></div>
+            <!-- <div class="login">
+                <a href="index.html"><u>Log In Here</u></a>
+            </div> -->
+            <div class="login">
+                    <button href="index.html" id="loginButton">Log In Here</button>
+                </div>
+        </div>
+        <div class="break"></div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+
+</html>

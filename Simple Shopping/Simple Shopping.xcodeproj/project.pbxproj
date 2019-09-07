@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4221F007231C2D7D0071013D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221F006231C2D7D0071013D /* LoginViewController.swift */; };
+		4221F009231C2D8C0071013D /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221F008231C2D8C0071013D /* SignupViewController.swift */; };
+		4221F00C231EC5210071013D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4221F00B231EC5210071013D /* MBProgressHUD.m */; };
+		4221F00E231EC5280071013D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4221F00D231EC5280071013D /* GoogleService-Info.plist */; };
+		4221F010231EC5310071013D /* BluetoothSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221F00F231EC5300071013D /* BluetoothSerial.swift */; };
+		4221F012231EC5370071013D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221F011231EC5370071013D /* ScannerViewController.swift */; };
+		4221F014231EC8070071013D /* SavedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221F013231EC8060071013D /* SavedData.swift */; };
+		42480A5B2312C2F700F44102 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42480A5A2312C2F700F44102 /* AppDelegate.swift */; };
+		42480A5D2312C2F700F44102 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42480A5C2312C2F700F44102 /* ViewController.swift */; };
+		42480A602312C2F700F44102 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42480A5E2312C2F700F44102 /* Main.storyboard */; };
+		42480A622312C2F800F44102 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42480A612312C2F800F44102 /* Assets.xcassets */; };
+		42480A652312C2F800F44102 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42480A632312C2F800F44102 /* LaunchScreen.storyboard */; };
+		DDD3B580667ED0E932739233 /* Pods_Simple_Shopping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8840FDEE6FADD385D55B60AA /* Pods_Simple_Shopping.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4221EFD5231313E30071013D /* Simple Shopping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Simple Shopping-Bridging-Header.h"; sourceTree = "<group>"; };
+		4221F006231C2D7D0071013D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4221F008231C2D8C0071013D /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		4221F00A231EC5120071013D /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		4221F00B231EC5210071013D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4221F00D231EC5280071013D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4221F00F231EC5300071013D /* BluetoothSerial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothSerial.swift; sourceTree = "<group>"; };
+		4221F011231EC5370071013D /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		4221F013231EC8060071013D /* SavedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedData.swift; sourceTree = "<group>"; };
+		42480A572312C2F600F44102 /* Simple Shopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Shopping.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42480A5A2312C2F700F44102 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		42480A5C2312C2F700F44102 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		42480A5F2312C2F700F44102 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		42480A612312C2F800F44102 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42480A642312C2F800F44102 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		42480A662312C2F800F44102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		478353647582C8CC80EB9345 /* Pods-Simple Shopping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Shopping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Simple Shopping/Pods-Simple Shopping.release.xcconfig"; sourceTree = "<group>"; };
+		7FDB7B86C896647226C438A6 /* Pods-Simple Shopping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Shopping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simple Shopping/Pods-Simple Shopping.debug.xcconfig"; sourceTree = "<group>"; };
+		8840FDEE6FADD385D55B60AA /* Pods_Simple_Shopping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Shopping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		42480A542312C2F600F44102 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDD3B580667ED0E932739233 /* Pods_Simple_Shopping.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C896DBDF2ED3254F39B0B15 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8840FDEE6FADD385D55B60AA /* Pods_Simple_Shopping.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42480A4E2312C2F600F44102 = {
+			isa = PBXGroup;
+			children = (
+				42480A592312C2F600F44102 /* Simple Shopping */,
+				42480A582312C2F600F44102 /* Products */,
+				84AAE1F2CD0736F5CD94C6A9 /* Pods */,
+				1C896DBDF2ED3254F39B0B15 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		42480A582312C2F600F44102 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42480A572312C2F600F44102 /* Simple Shopping.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42480A592312C2F600F44102 /* Simple Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				42480A5A2312C2F700F44102 /* AppDelegate.swift */,
+				4221F013231EC8060071013D /* SavedData.swift */,
+				4221F006231C2D7D0071013D /* LoginViewController.swift */,
+				4221F008231C2D8C0071013D /* SignupViewController.swift */,
+				42480A5C2312C2F700F44102 /* ViewController.swift */,
+				4221F011231EC5370071013D /* ScannerViewController.swift */,
+				4221F00F231EC5300071013D /* BluetoothSerial.swift */,
+				42480A5E2312C2F700F44102 /* Main.storyboard */,
+				4221F00A231EC5120071013D /* MBProgressHUD.h */,
+				4221F00B231EC5210071013D /* MBProgressHUD.m */,
+				42480A612312C2F800F44102 /* Assets.xcassets */,
+				42480A632312C2F800F44102 /* LaunchScreen.storyboard */,
+				42480A662312C2F800F44102 /* Info.plist */,
+				4221F00D231EC5280071013D /* GoogleService-Info.plist */,
+				4221EFD5231313E30071013D /* Simple Shopping-Bridging-Header.h */,
+			);
+			path = "Simple Shopping";
+			sourceTree = "<group>";
+		};
+		84AAE1F2CD0736F5CD94C6A9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7FDB7B86C896647226C438A6 /* Pods-Simple Shopping.debug.xcconfig */,
+				478353647582C8CC80EB9345 /* Pods-Simple Shopping.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42480A562312C2F600F44102 /* Simple Shopping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42480A692312C2F800F44102 /* Build configuration list for PBXNativeTarget "Simple Shopping" */;
+			buildPhases = (
+				C5EA600898BD405AD113C8A3 /* [CP] Check Pods Manifest.lock */,
+				42480A532312C2F600F44102 /* Sources */,
+				42480A542312C2F600F44102 /* Frameworks */,
+				42480A552312C2F600F44102 /* Resources */,
+				354FA09359A9A379884DF246 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Simple Shopping";
+			productName = "Simple Shopping";
+			productReference = 42480A572312C2F600F44102 /* Simple Shopping.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42480A4F2312C2F600F44102 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = HTHS;
+				TargetAttributes = {
+					42480A562312C2F600F44102 = {
+						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = 42480A522312C2F600F44102 /* Build configuration list for PBXProject "Simple Shopping" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 42480A4E2312C2F600F44102;
+			productRefGroup = 42480A582312C2F600F44102 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42480A562312C2F600F44102 /* Simple Shopping */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42480A552312C2F600F44102 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42480A652312C2F800F44102 /* LaunchScreen.storyboard in Resources */,
+				4221F00E231EC5280071013D /* GoogleService-Info.plist in Resources */,
+				42480A622312C2F800F44102 /* Assets.xcassets in Resources */,
+				42480A602312C2F700F44102 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		354FA09359A9A379884DF246 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Simple Shopping/Pods-Simple Shopping-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Simple Shopping/Pods-Simple Shopping-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5EA600898BD405AD113C8A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Simple Shopping-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		42480A532312C2F600F44102 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4221F007231C2D7D0071013D /* LoginViewController.swift in Sources */,
+				4221F014231EC8070071013D /* SavedData.swift in Sources */,
+				4221F009231C2D8C0071013D /* SignupViewController.swift in Sources */,
+				4221F012231EC5370071013D /* ScannerViewController.swift in Sources */,
+				42480A5D2312C2F700F44102 /* ViewController.swift in Sources */,
+				42480A5B2312C2F700F44102 /* AppDelegate.swift in Sources */,
+				4221F00C231EC5210071013D /* MBProgressHUD.m in Sources */,
+				4221F010231EC5310071013D /* BluetoothSerial.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		42480A5E2312C2F700F44102 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42480A5F2312C2F700F44102 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		42480A632312C2F800F44102 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42480A642312C2F800F44102 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42480A672312C2F800F44102 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		42480A682312C2F800F44102 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		42480A6A2312C2F800F44102 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FDB7B86C896647226C438A6 /* Pods-Simple Shopping.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BMPVP9B9U3;
+				INFOPLIST_FILE = "Simple Shopping/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ajs.Simple-Shopping";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Simple Shopping/Simple Shopping-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		42480A6B2312C2F800F44102 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 478353647582C8CC80EB9345 /* Pods-Simple Shopping.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BMPVP9B9U3;
+				INFOPLIST_FILE = "Simple Shopping/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ajs.Simple-Shopping";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Simple Shopping/Simple Shopping-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42480A522312C2F600F44102 /* Build configuration list for PBXProject "Simple Shopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42480A672312C2F800F44102 /* Debug */,
+				42480A682312C2F800F44102 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42480A692312C2F800F44102 /* Build configuration list for PBXNativeTarget "Simple Shopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42480A6A2312C2F800F44102 /* Debug */,
+				42480A6B2312C2F800F44102 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 42480A4F2312C2F600F44102 /* Project object */;
+}

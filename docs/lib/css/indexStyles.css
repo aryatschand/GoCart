@@ -1,0 +1,188 @@
+body {
+    padding: 0px;
+    margin: 0;
+    font-family: 'Karla', sans-serif;
+}
+
+.page {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: whitesmoke;
+    font-family: 'Karla', sans-serif;
+}
+
+#logo1 {
+    background-image: linear-gradient(rgb(156,163,233), rgb(60,74,212));
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Karla', sans-serif;
+}
+
+.headerText{
+    color: white;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 50px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 10px rgb(0,0,0);
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+#logo {
+    height: 22vh;
+    width: auto;
+    
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgb(156,163,233), rgb(61, 77, 219));
+    border-radius: 22px;
+    width: 30vw;
+    font-family: 'Raleway', sans-serif;
+    /* fonfont-family: 'Karla', sans-serif;t-family: 'Quicksand', sans-serif; */
+}
+
+.email,
+.password {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    font-size: 100px;
+    font-family: 'Rubik', sans-serif;
+    /* width: 100%; */
+}
+
+#emailInput,
+#passwordInput {
+    height: 20px;
+    width: 250px;
+    border: solid white;
+    border-radius: 22px;
+    padding: 5px;
+    font-family: 'Karla', sans-serif;
+}
+
+.box {
+    padding: 10px 5px;
+    font-family: 'Karla', sans-serif;
+    box-shadow: 3px 3px 10px rgb(0,0,0);
+}
+
+.break {
+    height: 15px;
+}
+
+#signUpButton {
+    border-radius: 5px;
+    border: rgb(76, 76, 218) solid;
+    background-color: rgb(76, 76, 218);
+    width: 25%;
+    font-family: 'Karla', sans-serif;
+    color: white;
+    box-shadow: 1px 1px 8px rgb(0,0,0);
+}
+
+#signUpButton:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 10px rgb(0,0,0);
+}
+
+#submit_button {
+    border-radius: 22px;
+    border: rgb(76, 76, 218) solid;
+    background-color: rgb(76, 76, 218);
+    width: 100%;
+    font-family: 'Karla', sans-serif;
+    color: white;
+    box-shadow: 1px 1px 8px rgb(0,0,0);
+}
+
+#submit_button:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 10px rgb(0,0,0);
+}
+
+#customBtn {
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: 190px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+    font-family: 'Karla', sans-serif;
+}
+
+#customBtn:hover {
+    cursor: pointer;
+    font-family: 'Karla', sans-serif;
+}
+
+#work {
+    background-image: radial-gradient(circle, rgb(208, 255, 0), rgb(201, 83, 83), rgb(134, 146, 30));
+}
+
+.signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-image: linear-gradient( 200deg, rgb(253, 153, 212), rgb(255, 176, 176, 0.555)); */
+    border-radius: 22px;
+    width: 30vw;
+    font-family: 'Rubik', sans-serif;
+}
+
+.title {
+    margin: 0px;
+    color: white;
+    font-family: 'Karla', sans-serif;
+    font-size: 25px;
+}
+
+#or {
+    font-family: 'Karla', sans-serif;
+    font-size: 30px;
+    color: whitesmoke;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a {
+    color: whitesmoke;
+}
+
+@media (max-width: 950px) {
+    .box {
+        width: 400px;
+    }
+    .headerText{
+        display: none;
+    }
+    #signUpButton {
+        width: 100%
+    } 
+}
+
+@media (max-width: 500px) {
+    .box {
+        width: 90vw;
+    }
+    .headerText{
+        display: none;
+    }
+    #signUpButton {
+        width: 100%
+    } 
+}

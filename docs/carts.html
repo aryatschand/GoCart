@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link
+    href="https://fonts.googleapis.com/css?family=EB+Garamond|Karla:400,700|Quicksand|Raleway|Roboto+Slab|Oxygen|Rubik&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="lib/css/cartsStyles.css">
+  <title>Simple Shopping</title>
+  <meta name="google-signin-client_id"
+    content="1080608411205-thol05ebahe7oq04p1su21rhjumv6vk1.apps.googleusercontent.com">
+  <script src="lib/js/cartsScripts.js" defer></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+                 https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCC5RzjEekrY6bZT83_X57Dq4gpNAZPbb4",
+      authDomain: "simple-shopping-c016c.firebaseapp.com",
+      databaseURL: "https://simple-shopping-c016c.firebaseio.com",
+      projectId: "simple-shopping-c016c",
+      storageBucket: "simple-shopping-c016c.appspot.com",
+      messagingSenderId: "1080608411205",
+      appId: "1:1080608411205:web:4a118757fc4fa624"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+
+<body>
+  <div id="logo1">
+    <h1 class="headerText">Simple</h1>
+    <a href="index.html">
+      <img id="logo" src="assets/logo.png" alt="Simple Shopping" height="100" width="auto">
+    </a>
+    <h1 class="headerText">Shopping</h1>
+  </div>
+  <button id="addButton">ADD CART</button>
+  <input id="addFile" type="file" name="datafile" accept=".csv" onchange="importData()">
+  <button id="removeAllItems">REMOVE ALL CARTS</button>
+  <form id="searchBar">
+    <input id="cartSearch">
+    <button id="submitSearch"><img src="assets/search.PNG" width="40px" height="auto"></button>
+  </form>
+  <a href="landing.html">Manage Products</a>
+  <table id="addItemsHere">
+    <tr>
+      <th>RFID Tag #</th>
+      <th>Cart Name</th>
+    </tr>
+  </table>
+</body>
+
+</html>
