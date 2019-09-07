@@ -29,7 +29,7 @@ enum ReceivedMessageOption: Int {
     newline
 }
 
-final class ViewController: UIViewController, UITextFieldDelegate, BluetoothSerialDelegate {
+final class WelcomeViewController: UIViewController, UITextFieldDelegate, BluetoothSerialDelegate {
     
     //MARK: IBOutlets
     
@@ -52,16 +52,16 @@ final class ViewController: UIViewController, UITextFieldDelegate, BluetoothSeri
         ref = Database.database().reference()
         
         serial = BluetoothSerial(delegate: self)
-
+        
         // UI
         //mainTextView.text = ""
         reloadView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
         
         // we want to be notified when the keyboard is shown (so we can move the textField up)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // we want to be notified when the keyboard is shown (so we can move the textField up)
         
@@ -71,6 +71,11 @@ final class ViewController: UIViewController, UITextFieldDelegate, BluetoothSeri
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadData()
+        saveData()
+        data = dataArray[0]
+        data.lists = []
+        saveData()
     }
     
     deinit {
@@ -98,15 +103,15 @@ final class ViewController: UIViewController, UITextFieldDelegate, BluetoothSeri
     }
     
     func sendName(inputtemp : String) {
-            var input = inputtemp
-            var index: Int = -1
-            for var x in 0...data.idArray.count-1 {
-                var testStr = String(data.idArray[x]) + "\r\n"
-                if testStr == input {
-                    index = x
-                    break
-                }
+        var input = inputtemp
+        var index: Int = -1
+        for var x in 0...data.idArray.count-1 {
+            var testStr = String(data.idArray[x]) + "\r\n"
+            if testStr == input {
+                index = x
+                break
             }
+        }
         if index != -1 {
             serial.sendMessageToDevice(data.nameArray[index])
             serial.sendMessageToDevice(",")
@@ -198,11 +203,24 @@ final class ViewController: UIViewController, UITextFieldDelegate, BluetoothSeri
             self.present(alert, animated: true)
         }
     }
+    
+    func loadData() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                dataArray = try decoder.decode([SavedData].self, from: data)
+            } catch {
+                let alert = UIAlertController(title: "Error Code 2", message: "Something went wrong! Please reload App.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+        }
+    }
 }
 extension String {
     var isInt: Bool {
         return Int(self) != nil
     }
 }
-        
+
 
