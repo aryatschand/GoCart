@@ -31,11 +31,11 @@
 #include <SPI.h>
 #include <MFRC522.h>
 #include <LiquidCrystal.h> // includes the LiquidCrystal Library 
-LiquidCrystal lcd(2, 3, 4, 5, 6, 7); // Creates an LC object. Parameters: (rs, enable, d4, d5, d6, d7) 
+LiquidCrystal lcd(20, 30, 41, 42, 43, 44); // Creates an LC object. Parameters: (rs, enable, d4, d5, d6, d7) 
 
 
 
-#define SS_PIN 41
+#define SS_PIN 53
 #define RST_PIN 33
 
 MFRC522 rfid(SS_PIN, RST_PIN); // Instance of the class
@@ -64,10 +64,13 @@ void setup() {
 }
  
 void loop() {
- 
   // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+  noTone(5);
   if ( ! rfid.PICC_IsNewCardPresent())
+  {
+    
     return;
+  }
 
   // Verify if the NUID has been readed
   if ( ! rfid.PICC_ReadCardSerial())
@@ -95,7 +98,7 @@ void loop() {
     for (byte i = 0; i < 4; i++) {
       nuidPICC[i] = rfid.uid.uidByte[i];
     }
-   
+  
     Serial.println(F("The NUID tag is:"));
     Serial.print(F("In hex: "));
     printHex(rfid.uid.uidByte, rfid.uid.size);
@@ -105,12 +108,16 @@ void loop() {
     Serial.println();
     while(Serial3.available()==0)
     {
-      
+        tone (5, 25, 50);
+        Serial.println("here");
     }
+  noTone(5);
      String input = Serial3.readString();
      int a = input.indexOf(',');
      String name1 = input.substring(0, a);
      String price = input.substring(a+1);
+     Serial.println(name1);
+     Serial.println(price);
      lcd.clear();
      lcd.print(name1);
      lcd.setCursor(0,1);
