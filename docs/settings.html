@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Shopping</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCC5RzjEekrY6bZT83_X57Dq4gpNAZPbb4",
+            authDomain: "simple-shopping-c016c.firebaseapp.com",
+            databaseURL: "https://simple-shopping-c016c.firebaseio.com",
+            projectId: "simple-shopping-c016c",
+            storageBucket: "simple-shopping-c016c.appspot.com",
+            messagingSenderId: "1080608411205",
+            appId: "1:1080608411205:web:4a118757fc4fa624"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="lib/js/bcrypt.min.js"></script>
+    <script src="lib/js/settingsScripts.js" defer></script>
+
+</head>
+
+<body>
+    <h1>Change Password</h1>
+    <form>
+        <div id="addVerifyPassword">
+
+        </div>
+        <div class="password">
+            <input type="password" class="input" id="passwordInput" placeholder="New password">
+        </div>
+        <div class="break"></div>
+        <div class="passwordCon">
+            <input type="password" class="input" id="passwordConfirm" placeholder="Confirm password">
+        </div>
+        <div class="submit">
+            <button id="submit_button">Submit</button>
+        </div>
+    </form>
+    <h1>Admin Users</h1>
+    <table id="addUsersHere">
+        <tr>
+            <th>Name</th>
+            <th>Email Adress</th>
+        </tr>
+    </table>
+    <button id="addButton">Add User with Google</button>
+    <button id="addButton2">Add User without Google</button>
+
+
+</body>
+
+</html>

@@ -30,7 +30,7 @@ body {
   background-color: rgb(101, 101, 250);
   font-family: 'Karla', sans-serif;
   color: white;
-  box-shadow: 1px 1px 3px rgb(0,0,0);
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
 }
 
 table {
@@ -131,10 +131,29 @@ td, th {
   display: none;
 }
 
-#addFileButton{
+#addFileButton {
   height: 30px;
   margin-top: 30px;
   margin-left: 40px;
+}
+
+#gear {
+  margin-top: 18px;
+  margin-left: 200px;
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  -o-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+  overflow: hidden;
+}
+
+#gear:hover {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 @media (max-width: 950px) {
