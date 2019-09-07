@@ -102,7 +102,7 @@ async function signUpEmail(event) {
             email: document.querySelector("#emailInput").value,
             password: hash(document.querySelector("#passwordInput").value),
             name: `${document.querySelector("#firstName").value} ${document.querySelector("#lastName").value}`,
-            imageURL: 'https://saivedagiri.github.io/SimpleShoppingInternalTesting/assets/default.png'
+            imageURL: 'http://gocartapp.tech/assets/default.png'
         }
         database.child("adminUsers").push(value);
         let myVal = await database.child("adminUsers").orderByChild('email').equalTo(email).once("value");

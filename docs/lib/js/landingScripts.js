@@ -233,7 +233,7 @@ async function addItemSubmit() {
         let newRow = document.querySelector('.addTable');
         let myImage;
         if (document.querySelector(".imageAddField").value == "") {
-            myImage = "https://saivedagiri.github.io/SimpleShoppingInternalTesting/assets/noProductImage.png";
+            myImage = "http://gocartapp.tech/assets/noProductImage.png";
         } else {
             myImage = document.querySelector(".imageAddField").value;
         }
@@ -321,7 +321,7 @@ async function addItemsCSV(tagNum, productName, price, productImage) {
     } else {
         let myImage;
         if (productImage == "") {
-            myImage = "https://saivedagiri.github.io/SimpleShoppingInternalTesting/assets/noProductImage.png";
+            myImage = "http://gocartapp.tech/assets/noProductImage.png";
         } else {
             myImage = productImage;
         }
@@ -418,7 +418,7 @@ function search() {
 //     } else {
 //         let myImage;
 //         if (document.querySelector(".imageModifyField").value == "") {
-//             myImage = "https://saivedagiri.github.io/SimpleShoppingInternalTesting/assets/noProductImage.png";
+//             myImage = "http://gocartapp.tech/assets/noProductImage.png";
 //         } else {
 //             myImage = document.querySelector(".imageModifyField").value;
 //         }
