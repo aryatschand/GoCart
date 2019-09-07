@@ -78,7 +78,6 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
         loadData()
         saveData()
         data = dataArray[0]
-        data.lists = []
         Welcome.text = "Welcome to the Go Cart app, " + data.name + "!"
         saveData()
     }
@@ -90,10 +89,19 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
     
     @IBAction func ShopClicked(_ sender: Any) {
         if ShopBtn.titleLabel!.text == "Shop Now" {
-            performSegue(withIdentifier: "Shop", sender: self)
+            if data.lists.count > 0 {
+                performSegue(withIdentifier: "Shop", sender: self)
+            } else {
+                performSegue(withIdentifier: "ShopNoList", sender: self)
+            }
         } else if ShopBtn.titleLabel!.text == "Connect to Shop" {
             if serial.connectedPeripheral == nil {
-                performSegue(withIdentifier: "ShowScanner", sender: self)
+                //performSegue(withIdentifier: "ShowScanner", sender: self)
+                if data.lists.count > 0 {
+                    performSegue(withIdentifier: "Shop", sender: self)
+                } else {
+                    performSegue(withIdentifier: "ShopNoList", sender: self)
+                }
             } else {
                 serial.disconnect()
                 reloadView()

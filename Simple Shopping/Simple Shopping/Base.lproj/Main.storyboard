@@ -180,7 +180,8 @@
                         <outlet property="barButton" destination="F8L-Yk-OfI" id="E9b-eA-7c1"/>
                         <outlet property="navItem" destination="0uS-CY-U7f" id="KWD-mB-cMB"/>
                         <segue destination="veK-I1-lG2" kind="show" identifier="ShowScanner" id="0gg-67-amx"/>
-                        <segue destination="8nG-gz-fSZ" kind="show" identifier="Shop" id="fK0-wk-9Wh"/>
+                        <segue destination="X9b-hW-2Cf" kind="show" identifier="Shop" id="jcg-Ne-c4N"/>
+                        <segue destination="gkX-5w-71f" kind="show" identifier="ShopNoList" id="jVq-ze-jJD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -237,7 +238,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wgl-Hj-HkR">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="list" id="wgl-Hj-HkR">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wgl-Hj-HkR" id="Lp3-Iy-prm">
@@ -253,12 +254,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="ErQ-Uy-IKc"/>
                     <connections>
-                        <segue destination="gkX-5w-71f" kind="show" id="SGh-XP-2Zf"/>
+                        <segue destination="gkX-5w-71f" kind="show" identifier="afterlist" id="SGh-XP-2Zf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXb-st-98i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4584" y="810"/>
+            <point key="canvasLocation" x="3622" y="810"/>
         </scene>
         <!--Title-->
         <scene sceneID="kfU-OA-zPs">
@@ -276,7 +277,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jQ1-Cr-f8P">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="product" id="jQ1-Cr-f8P">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jQ1-Cr-f8P" id="fDP-At-nAp">
@@ -287,13 +288,6 @@
                                             <rect key="frame" x="61" y="0.0" width="46" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-qq-2Q7">
-                                            <rect key="frame" x="255" y="11" width="61" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -313,7 +307,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xt-Jb-wnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5428" y="810"/>
+            <point key="canvasLocation" x="4494" y="810"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="qcc-99-hBF">
@@ -328,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf6-bj-3yO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6299" y="810"/>
+            <point key="canvasLocation" x="5303" y="810"/>
         </scene>
         <!--Title-->
         <scene sceneID="ih2-zN-OGb">
@@ -566,25 +560,6 @@
             </objects>
             <point key="canvasLocation" x="1948" y="927"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="0L1-Vv-Bqm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8nG-gz-fSZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="48A-DG-nMx"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XWg-AX-hrf">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="X9b-hW-2Cf" kind="relationship" relationship="rootViewController" id="ZfE-wC-Lzn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Cm-Nl-jYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3747.826086956522" y="809.59821428571422"/>
-        </scene>
         <!--Lists-->
         <scene sceneID="Nv4-Po-8HM">
             <objects>
@@ -608,5 +583,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="TuC-B7-fiy"/>
         <segue reference="ZP2-3H-cxs"/>
+        <segue reference="SGh-XP-2Zf"/>
     </inferredMetricsTieBreakers>
 </document>
