@@ -1,4 +1,4 @@
-const myVar = process.argv[2];
+let myVar = process.argv[2];
 
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
