@@ -21,6 +21,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.ref.child("Products").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
+            self.data.nameArray = []
+            self.data.idArray = []
+            self.data.priceArray = []
+            self.data.urlArray = []
             let value = snapshot.value as? NSDictionary
             for (key,values) in value! {
                 self.data.nameArray.append(key as! String)

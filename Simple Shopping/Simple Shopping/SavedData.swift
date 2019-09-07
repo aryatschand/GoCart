@@ -14,4 +14,5 @@ class SavedData: Codable {
     var priceArray: [Double] = []
     var urlArray: [String] = []
     var loggedin: Bool = false
+    var lists: [ShoppingList] = []
 }
