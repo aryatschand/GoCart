@@ -3,7 +3,7 @@ let mySound;
 
 function preload() {
     soundFormats('mp3');
-    mySound = loadSound('http://gocartapp.tech/assets/Siren.mp3');
+    mySound = loadSound('https://gocartapp.tech/assets/Siren.mp3');
 }
 
 function setup() {
