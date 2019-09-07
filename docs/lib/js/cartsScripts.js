@@ -170,7 +170,7 @@ async function addItem() {
     rfidTagAddField.placeholder = "RFID Tag #";
     let nameAddField = document.createElement("input");
     nameAddField.classList.add('nameAddField');
-    nameAddField.placeholder = "Product Name";
+    nameAddField.placeholder = "Cart Name";
     rfidTagElement.appendChild(rfidTagAddField);
     nameElement.appendChild(nameAddField);
     submit.classList.add('managementButton');
