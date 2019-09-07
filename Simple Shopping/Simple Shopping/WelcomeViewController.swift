@@ -44,6 +44,7 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
     var data: SavedData!
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Data.plist")
     var ref: DatabaseReference!
+    var receivedArray: [String] = []
     
     //MARK: Functions
     
@@ -153,10 +154,15 @@ final class WelcomeViewController: UIViewController, UITextFieldDelegate, Blueto
     func serialDidReceiveString(_ message: String) {
         // add the received text to the textView, optionally with a line break at the end
         //mainTextView.text! += message
-        sendName(inputtemp: message)
+        //sendName(inputtemp: message)
+        receivedArray.append(message)
         let pref = UserDefaults.standard.integer(forKey: ReceivedMessageOptionKey)
         //if pref == ReceivedMessageOption.newline.rawValue { mainTextView.text! += "\n" }
         textViewScrollToBottom()
+        for var x in 0...receivedArray.count-1
+        {
+            print(receivedArray[x])
+        }
     }
     
     func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
