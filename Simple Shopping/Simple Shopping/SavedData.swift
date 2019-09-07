@@ -10,8 +10,8 @@ import Foundation
 
 class SavedData: Codable {
     var nameArray: [String] = []
-    var idArray: [Int64] = []
-    var priceArray: [Double] = []
+    var idArray: [String] = []
+    var priceArray: [String] = []
     var urlArray: [String] = []
     var loggedin: Bool = false
     var lists: [ShoppingList] = []

@@ -19,6 +19,60 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func loadArrays() {
         
+        var organizationKey: String = ""
+        
+        var organizationName = "Simple Shopping"
+        
+        self.ref.child("organizations").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // Get user value
+            
+            let value = snapshot.value as? NSDictionary
+            
+            for (key,values) in value! {
+                let value2 = values as? NSDictionary
+                
+                if(value2?["name"] as! String == organizationName){
+                    
+                    organizationKey = key as! String
+                    
+                    self.ref.child("organizations/" + organizationKey + "/rfidKeys").observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        // Get user value
+                        
+                        let value = snapshot.value as? NSDictionary
+                        
+                        for (key,values) in value! {
+                            //print(values)
+                            let value2 = values as? NSDictionary
+                            
+                            self.data.nameArray.append(value2?["productName"] as! String)
+                            
+                            self.data.idArray.append(value2?["rfidTag"] as! String)
+                            
+                            self.data.priceArray.append(value2?["price"] as! String)
+                            
+                            self.data.urlArray.append(value2?["productImage"] as! String)
+                            // init serial
+                            
+                        }
+                        
+                        self.saveData()
+                        
+                    })
+                    
+                }
+                
+            }
+            
+            self.saveData()
+            
+        })
+        
+    }
+     /*
+    func loadArrays() {
+        
         self.ref.child("Products").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             self.data.nameArray = []
@@ -38,7 +92,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             self.saveData()
         })
-    }
+    } */
     
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -83,6 +137,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             dataArray.append(dataSet)
         }
         data = dataArray[0]
+        data.nameArray = []
+        saveData()
         ref = Database.database().reference()
         loadArrays()
         saveData()

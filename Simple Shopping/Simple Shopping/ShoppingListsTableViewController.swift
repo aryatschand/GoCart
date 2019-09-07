@@ -13,6 +13,7 @@ class ShoppingListsTableViewController: UITableViewController {
     var dataArray = [SavedData]()
     var data: SavedData!
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Data.plist")
+    var select = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +81,7 @@ class ShoppingListsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        select = indexPath.row
     }
     
     func saveData() {
@@ -104,6 +106,20 @@ class ShoppingListsTableViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
             }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newlist" {
+            let ListProductsTableViewController = segue.destination as! ListProductsTableViewController
+            var selectedIndexPath = tableView.indexPathForSelectedRow
+            ListProductsTableViewController.index = 0
+            data.lists[0].names.append("apple")
+            saveData()
+        } else if segue.identifier == "select" {
+            let ListProductsTableViewController = segue.destination as! ListProductsTableViewController
+            ListProductsTableViewController.index = select
+            data.lists[0].names.append("apple")
+            saveData()
         }
     }
 
