@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1080608411205-ejhqiu0lt19gi5ugfdnunmsg11h6eqoh.apps.googleusercontent.com</string>
+	<string>1080608411205-v5ifjkihbdomsbj8c7m9qbb31aera97u.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1080608411205-ejhqiu0lt19gi5ugfdnunmsg11h6eqoh</string>
+	<string>com.googleusercontent.apps.1080608411205-v5ifjkihbdomsbj8c7m9qbb31aera97u</string>
 	<key>API_KEY</key>
 	<string>AIzaSyA8s42w2EKDBsCO9buhAMIukEN7E0cgw3I</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ajs.Simple-Shopping</string>
+	<string>rfid.gocart</string>
 	<key>PROJECT_ID</key>
 	<string>simple-shopping-c016c</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1080608411205:ios:42095ded95b7e9e3</string>
+	<string>1:1080608411205:ios:dc4a1d1de85f09be911d2c</string>
 	<key>DATABASE_URL</key>
 	<string>https://simple-shopping-c016c.firebaseio.com</string>
 </dict>

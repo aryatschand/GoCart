@@ -57,6 +57,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         var password = String(Password.text!.sha512())
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+        data = dataArray[0]
+    }
+    
     func saveData() {
         let encoder = PropertyListEncoder()
         do {
@@ -66,6 +71,19 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertController(title: "Error Code 1", message: "Something went wrong! Please reload App.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true)
+        }
+    }
+    
+    func loadData() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                dataArray = try decoder.decode([SavedData].self, from: data)
+            } catch {
+                let alert = UIAlertController(title: "Error Code 2", message: "Something went wrong! Please reload App.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
         }
     }
 }

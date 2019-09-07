@@ -142,22 +142,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         data = dataArray[0]
         data.nameArray = []
-        saveData()
         ref = Database.database().reference()
         loadArrays()
+        //data = dataArray[0]
         saveData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if data.loggedin == true {
             self.performSegue(withIdentifier: "login", sender: self)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "signup" {
-            var SignupViewController = segue.destination as! SignupViewController
-            SignupViewController.data = data
         }
     }
     
