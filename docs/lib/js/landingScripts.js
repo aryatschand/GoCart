@@ -15,6 +15,13 @@ if (!mySearch) {
     console.log(mySearch);
 }
 
+document.querySelector("#manageCartsButton").addEventListener("click", manageCartsRedirect);
+
+function manageCartsRedirect() {
+    event.preventDefault();
+    window.location.href = "carts.html";
+}
+
 const database = firebase.database().ref();
 function updateListeners() {
     let removeButtons = document.querySelectorAll(".remove");

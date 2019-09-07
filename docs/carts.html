@@ -39,20 +39,23 @@
 
 <body>
   <div id="logo1">
-    <h1 class="headerText">Simple</h1>
+    <h1 class="headerText">GoCart</h1>
     <a href="index.html">
-      <img id="logo" src="assets/logo.png" alt="Simple Shopping" height="100" width="auto">
+      <img id="logo" src="assets/logo.png" alt="GoCart" height="100" width="auto">
     </a>
-    <h1 class="headerText">Shopping</h1>
   </div>
-  <button id="addButton">ADD CART</button>
-  <input id="addFile" type="file" name="datafile" accept=".csv" onchange="importData()">
-  <button id="removeAllItems">REMOVE ALL CARTS</button>
-  <form id="searchBar">
-    <input id="cartSearch">
-    <button id="submitSearch"><img src="assets/search.PNG" width="40px" height="auto"></button>
-  </form>
-  <a href="landing.html">Manage Products</a>
+  <div id="actionButtons">
+    <form id="searchBar">
+      <input id="cartSearch">
+      <button id="submitSearch"><img src="assets/search.PNG" width="40px" height="auto"></button>
+    </form>
+    <button id="addButton">Add Cart</button>
+    <button id="removeAllItems">Remove All Carts</button>
+    <input id="addFile" type="file" name="datafile" accept=".csv" onchange="importData()">
+    <div class="manageItems">
+      <button href="landing.html" id="manageItemsButton">Manage Items</button>
+    </div>
+  </div>
   <table id="addItemsHere">
     <tr>
       <th>RFID Tag #</th>

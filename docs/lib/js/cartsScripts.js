@@ -24,6 +24,13 @@ function updateListeners() {
     }
 }
 
+document.querySelector("#manageItemsButton").addEventListener("click", manageCartsRedirect);
+
+function manageCartsRedirect() {
+    event.preventDefault();
+    window.location.href = "landing.html";
+}
+
 document.getElementById("addButton").addEventListener('click', addItem);
 document.getElementById("removeAllItems").addEventListener('click', removeAll);
 document.getElementById("submitSearch").addEventListener('click', search);
@@ -83,7 +90,6 @@ function addItemSearch(data) {
         remove.classList.add(rfidTag);
         rfidTagElement.innerText = rfidTag;
         nameElement.innerText = name;
-        priceElement.innerText = price;
         actions.appendChild(remove);
         actions.classList.add('actions');
         tableElement.appendChild(rfidTagElement);
