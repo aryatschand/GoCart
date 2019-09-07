@@ -20,11 +20,17 @@ body {
   width: auto;
 }
 
+#actionButtons {
+  display: flex;
+}
+
+
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 50%;
-  margin-left: 10%;
+  width: 67%;
+  margin-left: 18%;
   margin-top: 20px;
 }
 
@@ -67,16 +73,41 @@ td, th {
   flex-flow: row;
   justify-content: center;
   align-items: center;
+  margin-left: 175px;
+}
+
+#addButton {
+  margin-top: 30px;
+  margin-left: 40px;
+  height: 30px;
+}
+
+#removeAllItems {
+  margin-top: 30px;
+  margin-left: 40px;
+  height: 30px;
+}
+
+#addFile {
+  margin-top: 34px;
+  margin-left: 40px;
+}
+
+#manageCartsButton {
+  margin-top: 34px;
+  margin-left: -45px;
 }
 
 #productSearch{ 
   margin: 0 
 }
+
 #productSearch { 
   padding: 5px; 
   font-size: 2em; 
   line-height: 30px 
 }
+
 #submitSearch {
   margin-left: 10px;
   display: block;
