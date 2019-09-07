@@ -15,6 +15,16 @@ if (!mySearch) {
     console.log(mySearch);
 }
 
+function removeAllConfirmation(){
+    let r = confirm("Are you sure you want to remove all items?");
+    if (r == true) {
+      removeAll();
+    } else {
+      console.log("cancelled");
+    }
+}
+
+
 document.querySelector("#manageCartsButton").addEventListener("click", manageCartsRedirect);
 
 function manageCartsRedirect() {
@@ -37,7 +47,7 @@ function updateListeners() {
 }
 
 document.getElementById("addButton").addEventListener('click', addItem);
-document.getElementById("removeAllItems").addEventListener('click', removeAll);
+document.getElementById("removeAllItems").addEventListener('click', removeAllConfirmation);
 document.getElementById("submitSearch").addEventListener('click', search);
 
 // let modifyId;
@@ -71,7 +81,11 @@ function addItemAuto(data) {
     let actions = document.createElement("th");
     let remove = document.createElement("button");
     // let modify = document.createElement("button");
-    remove.innerText = "REMOVE";
+    remove.innerText = "X";
+    remove.style.color = "red";
+    remove.style.fontWeight = "bold";
+    remove.style.background = "white";
+    remove.style.borderColor = "white";
     remove.classList.add('remove');
     remove.classList.add(rfidTag);
     // modify.innerText = "MODIFY";
@@ -179,10 +193,10 @@ async function addItem() {
     let imageElement = document.createElement("th");
     let actions = document.createElement("th");
     let cancel = document.createElement("button");
-    cancel.innerText = "CANCEL";
+    cancel.innerText = "Cancel";
     cancel.classList.add('cancel');
     let submit = document.createElement("button");
-    submit.innerText = "SUBMIT";
+    submit.innerText = "Submit";
     submit.classList.add('submit');
     let rfidTagAddField = document.createElement("input");
     rfidTagAddField.classList.add('rfidTagAddField');
@@ -200,6 +214,10 @@ async function addItem() {
     productNameElement.appendChild(productNameAddField);
     priceElement.appendChild(priceAddField);
     imageElement.appendChild(imageAddField);
+    submit.classList.add('managementButton');
+    submit.style.marginBottom = "5px";
+    submit.style.marginRight = "5px";
+    cancel.classList.add('managementButton');
     actions.appendChild(submit);
     actions.appendChild(cancel);
     tableElement.appendChild(rfidTagElement);
@@ -347,7 +365,6 @@ async function addItemsCSV(tagNum, productName, price, productImage) {
             productImage: myImage,
             inCart: false,
             purchased: false
-
         }
         database.child(`organizations/${sessionStorage.getItem('organizationKey')}/rfidKeys`).push(value);
     }

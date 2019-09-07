@@ -24,15 +24,24 @@ function updateListeners() {
     }
 }
 
-document.querySelector("#manageItemsButton").addEventListener("click", manageCartsRedirect);
+function removeAllCarts(){
+    let r = confirm("Are you sure you want to remove all carts?");
+    if (r == true) {
+      removeAll();
+    } else {
+      console.log("cancelled");
+    }
+}
 
-function manageCartsRedirect() {
+document.querySelector("#manageItemsButton").addEventListener("click", manageItemsRedirect);
+
+function manageItemsRedirect() {
     event.preventDefault();
     window.location.href = "landing.html";
 }
 
 document.getElementById("addButton").addEventListener('click', addItem);
-document.getElementById("removeAllItems").addEventListener('click', removeAll);
+document.getElementById("removeAllItems").addEventListener('click', removeAllCarts);
 document.getElementById("submitSearch").addEventListener('click', search);
 
 // const value = {
@@ -57,7 +66,11 @@ function addItemAuto(data) {
     let nameElement = document.createElement("th");
     let actions = document.createElement("th");
     let remove = document.createElement("button");
-    remove.innerText = "REMOVE";
+    remove.innerText = "X";
+    remove.style.color = "red";
+    remove.style.fontWeight = "bold";
+    remove.style.background = "white";
+    remove.style.borderColor = "white";
     remove.classList.add('remove');
     remove.classList.add(rfidTag);
     rfidTagElement.innerText = rfidTag;
@@ -147,19 +160,23 @@ async function addItem() {
     let nameElement = document.createElement("th");
     let actions = document.createElement("th");
     let cancel = document.createElement("button");
-    cancel.innerText = "CANCEL";
+    cancel.innerText = "Cancel";
     cancel.classList.add('cancel');
     let submit = document.createElement("button");
-    submit.innerText = "SUBMIT";
+    submit.innerText = "Submit";
     submit.classList.add('submit');
     let rfidTagAddField = document.createElement("input");
     rfidTagAddField.classList.add('rfidTagAddField');
     rfidTagAddField.placeholder = "RFID Tag #";
     let nameAddField = document.createElement("input");
     nameAddField.classList.add('nameAddField');
-    nameAddField.placeholder = "Product Name";
+    nameAddField.placeholder = "Cart Name";
     rfidTagElement.appendChild(rfidTagAddField);
     nameElement.appendChild(nameAddField);
+    submit.classList.add('managementButton');
+    submit.style.marginBottom = "5px";
+    submit.style.marginRight = "5px";
+    cancel.classList.add('managementButton');
     actions.appendChild(submit);
     actions.appendChild(cancel);
     tableElement.appendChild(rfidTagElement);
