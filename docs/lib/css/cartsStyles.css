@@ -24,6 +24,15 @@ body {
   display: flex;
 }
 
+.managementButton {
+  border-radius: 5px;
+  border: rgb(101, 101, 250) solid;
+  background-color: rgb(101, 101, 250);
+  font-family: 'Karla', sans-serif;
+  color: white;
+  box-shadow: 1px 1px 3px rgb(0,0,0);
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -92,7 +101,7 @@ td, th {
 }
 
 #searchBar {
-  margin-left: 175px;
+  margin-left: 250px;
 }
 
 #addButton {
@@ -113,8 +122,19 @@ td, th {
 }
 
 #manageItemsButton {
-  margin-top: 34px;
-  margin-left: -45px;
+  margin-top: 30px;
+  margin-left: 45px;
+  height: 30px;
+}
+
+#addFile {
+  display: none;
+}
+
+#addFileButton{
+  height: 30px;
+  margin-top: 30px;
+  margin-left: 40px;
 }
 
 @media (max-width: 950px) {

@@ -193,10 +193,10 @@ async function addItem() {
     let imageElement = document.createElement("th");
     let actions = document.createElement("th");
     let cancel = document.createElement("button");
-    cancel.innerText = "CANCEL";
+    cancel.innerText = "Cancel";
     cancel.classList.add('cancel');
     let submit = document.createElement("button");
-    submit.innerText = "SUBMIT";
+    submit.innerText = "Submit";
     submit.classList.add('submit');
     let rfidTagAddField = document.createElement("input");
     rfidTagAddField.classList.add('rfidTagAddField');
