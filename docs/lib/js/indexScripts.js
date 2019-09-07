@@ -93,7 +93,7 @@ async function signInEmail(event) {
         if (bcrypt.compareSync(inputPassword, userPassword)) {
             for (key in myVal) {
                 sessionStorage.setItem('userKey', key);
-                sessionStorage.setItem('profilePic', myVal[key][imageURL]);
+                sessionStorage.setItem('profilePic', myVal[key].imageURL);
             }
             if (!myVal[sessionStorage.getItem('userKey')]["organization"]) {
                 sessionStorage.setItem('organizationKey', "null");
