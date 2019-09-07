@@ -49,11 +49,13 @@
       <input id="productSearch">
       <button id="submitSearch"><img src="assets/search.PNG" width="40px" height="auto"></button>
     </form>
-    <button id="addButton">Add Item</button>
-    <button id="removeAllItems">Remove All Items</button>
-    <input id="addFile" type="file" name="datafile" accept=".csv" onchange="importData()">
+    <button id="addButton" class="managementButton">Add Item</button>
+    <button id="removeAllItems" class="managementButton">Remove All Items</button>
+    <input class="inputFile" id="addFile" type="file" name="datafile" accept=".csv" onchange="importData()">
+    <button class="managementButton" id="addFileButton"><label for="addFile">Choose a file</label></button>
+
     <div class="manageCarts">
-      <button href="carts.html" id="manageCartsButton">Manage Carts</button>
+      <button class="managementButton" href="carts.html" id="manageCartsButton">Manage Carts</button>
     </div>
   </div>
   <table id="addItemsHere">

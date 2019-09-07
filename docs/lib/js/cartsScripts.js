@@ -24,15 +24,24 @@ function updateListeners() {
     }
 }
 
-document.querySelector("#manageItemsButton").addEventListener("click", manageCartsRedirect);
+function removeAllCarts(){
+    let r = confirm("Are you sure you want to remove all carts?");
+    if (r == true) {
+      removeAll();
+    } else {
+      console.log("cancelled");
+    }
+}
 
-function manageCartsRedirect() {
+document.querySelector("#manageItemsButton").addEventListener("click", manageItemsRedirect);
+
+function manageItemsRedirect() {
     event.preventDefault();
     window.location.href = "landing.html";
 }
 
 document.getElementById("addButton").addEventListener('click', addItem);
-document.getElementById("removeAllItems").addEventListener('click', removeAll);
+document.getElementById("removeAllItems").addEventListener('click', removeAllCarts);
 document.getElementById("submitSearch").addEventListener('click', search);
 
 // const value = {
