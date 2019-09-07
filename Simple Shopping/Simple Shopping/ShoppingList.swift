@@ -11,6 +11,7 @@ import Foundation
 class ShoppingList: Codable {
     var name: String = ""
     var names: [String] = []
-    var price: [Double] = []
+    var price: [String] = []
     var url: [String] = []
+    var quantity: [String] = []
 }

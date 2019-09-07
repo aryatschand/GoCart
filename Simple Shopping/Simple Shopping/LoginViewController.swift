@@ -18,6 +18,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var ref: DatabaseReference!
     
     func loadArrays() {
+        data.idArray = []
+        data.nameArray = []
+        data.priceArray = []
+        data.urlArray = []
         
         var organizationKey: String = ""
         

@@ -52,6 +52,7 @@ class ShoppingListsTableViewController: UITableViewController {
         //1. Create the alert controller.
         let alert = UIAlertController(title: "Add List", message: "Enter list name", preferredStyle: .alert)
         
+        
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.placeholder = "list name"
@@ -65,6 +66,8 @@ class ShoppingListsTableViewController: UITableViewController {
             self.data.lists[self.data.lists.count-1].name = textField!.text!
             self.performSegue(withIdentifier: "newlist", sender: self)
             self.saveData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         }))
         
         // 4. Present the alert.
@@ -81,7 +84,6 @@ class ShoppingListsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
-        select = indexPath.row
     }
     
     func saveData() {
@@ -113,12 +115,11 @@ class ShoppingListsTableViewController: UITableViewController {
             let ListProductsTableViewController = segue.destination as! ListProductsTableViewController
             var selectedIndexPath = tableView.indexPathForSelectedRow
             ListProductsTableViewController.index = 0
-            data.lists[0].names.append("apple")
             saveData()
         } else if segue.identifier == "select" {
             let ListProductsTableViewController = segue.destination as! ListProductsTableViewController
-            ListProductsTableViewController.index = select
-            data.lists[0].names.append("apple")
+            var selectedIndexPath = tableView.indexPathForSelectedRow
+            ListProductsTableViewController.index = selectedIndexPath!.row
             saveData()
         }
     }
