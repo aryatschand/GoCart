@@ -94,7 +94,6 @@ class SelectListTableViewController: UITableViewController {
                 }
             }
             
-            
             saveData()
         }
     }

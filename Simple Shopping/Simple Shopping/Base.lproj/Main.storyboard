@@ -181,6 +181,7 @@
                         <outlet property="navItem" destination="0uS-CY-U7f" id="KWD-mB-cMB"/>
                         <segue destination="veK-I1-lG2" kind="show" identifier="ShowScanner" id="0gg-67-amx"/>
                         <segue destination="X9b-hW-2Cf" kind="show" identifier="Shop" id="jcg-Ne-c4N"/>
+                        <segue destination="gkX-5w-71f" kind="show" identifier="ShopNoList" id="jVq-ze-jJD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -258,7 +259,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXb-st-98i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4584" y="810"/>
+            <point key="canvasLocation" x="3622" y="810"/>
         </scene>
         <!--Title-->
         <scene sceneID="kfU-OA-zPs">
@@ -287,13 +288,6 @@
                                             <rect key="frame" x="61" y="0.0" width="46" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-qq-2Q7">
-                                            <rect key="frame" x="255" y="11" width="61" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -313,7 +307,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xt-Jb-wnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5428" y="810"/>
+            <point key="canvasLocation" x="4494" y="810"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="qcc-99-hBF">
@@ -328,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf6-bj-3yO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6299" y="810"/>
+            <point key="canvasLocation" x="5303" y="810"/>
         </scene>
         <!--Title-->
         <scene sceneID="ih2-zN-OGb">
@@ -589,5 +583,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="TuC-B7-fiy"/>
         <segue reference="ZP2-3H-cxs"/>
+        <segue reference="SGh-XP-2Zf"/>
     </inferredMetricsTieBreakers>
 </document>
