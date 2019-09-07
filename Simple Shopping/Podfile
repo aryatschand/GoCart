@@ -6,11 +6,10 @@ target 'Simple Shopping' do
   use_frameworks!
 
   # Pods for Simple Shopping
-	pod 'Firebase'
-pod 'Firebase/Core'
+pod 'Firebase'
 pod 'Firebase/Database'
-pod 'Firebase/Auth'
 pod 'CryptoSwift'
+pod 'SwiftLint'
 
 
 end
