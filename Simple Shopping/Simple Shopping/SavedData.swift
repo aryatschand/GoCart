@@ -16,4 +16,6 @@ class SavedData: Codable {
     var loggedin: Bool = false
     var lists: [ShoppingList] = []
     var name: String = ""
+    var email: String = ""
+    var userKey: String = ""
 }

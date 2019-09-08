@@ -36,6 +36,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             ref.child("users").childByAutoId().setValue(["email": username, "password": password, "name": name])
             data.loggedin = true
             data.name = name
+            data.email = username!
             saveData()
             self.performSegue(withIdentifier: "aftersignup", sender: self)
         } else {

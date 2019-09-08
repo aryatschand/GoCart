@@ -114,11 +114,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 for (key,values) in value! {
+                    self.data.userKey = key as! String
+                    self.saveData()
                     self.ref.child("users").child("\(key)").observeSingleEvent(of: .value, with: { (snapshot) in
                         let value2 = snapshot.value as? NSDictionary
                         if (value2?["password"] as! String) == password && (value2?["email"] as! String) == self.Username.text {
                             self.data.loggedin = true
                             self.data.name = value2?["name"] as! String
+                            self.data.email = value2?["email"] as! String
                             self.saveData()
                             self.performSegue(withIdentifier: "login", sender: self)
                         } else {
