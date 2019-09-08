@@ -42,6 +42,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         } else {
             PasswordVerify.text = ""
             Password.text = ""
+            let alert = UIAlertController(title: "Match Error", message: "Entered passwords do not match.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            }
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
         }
     }
     

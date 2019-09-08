@@ -34,6 +34,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
     var list: ShoppingList = ShoppingList()
     var temprfid: [String] = []
     var ref: DatabaseReference!
+    var completeGiven: Bool = false
     
     @IBOutlet weak var TitleLabel: UINavigationItem!
     
@@ -153,6 +154,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
         list.names = []
         list.price = []
         list.url = []
+        list.inCart = []
         if index >= 0 {
             if data.lists[index].names.count > 0 {
                 for var x in 0...data.lists[index].names.count-1 {
@@ -222,9 +224,31 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
         if data.lists.count > 0 && index != -1{
             if data.lists[index].names.count > 0 {
                 var extra = list.names.count-data.lists[index].names.count
-                for var x in 0...extra {
-                    list.inCart.append(true)
+                if extra > 0 {
+                    for var x in 0...extra-1 {
+                        list.inCart.append(true)
+                    }
                 }
+                if list.inCart.count > 0  {
+                    var finished = true
+                    for var x in 0...data.lists[index].names.count-1 {
+                        if list.inCart[x] == false {
+                            finished = false
+                        }
+                    }
+                    if finished == true {
+                        let alert = UIAlertController(title: "List Complete", message: "You have everything from your shopping list.", preferredStyle: .alert)
+                        let cancel = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                        }
+                        alert.addAction(cancel)
+                        present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        } else if data.lists.count > 0  {
+            var extra = list.names.count
+            for var x in 0...extra-1 {
+                list.inCart.append(true)
             }
         }
         
@@ -268,6 +292,31 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
             testingCarts(cart: serial.connectedPeripheral!.name!, setVal: true)
         }
         performSegue(withIdentifier: "pay", sender: self)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) && completeGiven == false {
+            let alert = UIAlertController(title: "Remove Item", message: "Are you sure you want to remove this item?", preferredStyle: .alert)
+            let delete = UIAlertAction(title: "Delete", style: .default, handler: { (action) in
+                self.list.names.remove(at: indexPath.row)
+                self.list.price.remove(at: indexPath.row)
+                self.list.url.remove(at: indexPath.row)
+                self.list.inCart.remove(at: indexPath.row)
+                if indexPath.row < self.data.lists[self.index].names.count {
+                    self.data.lists[self.index].names.remove(at: indexPath.row)
+                    self.data.lists[self.index].url.remove(at: indexPath.row)
+                    self.data.lists[self.index].price.remove(at: indexPath.row)
+                }
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.saveData()
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            })
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+            completeGiven = true
+        }
     }
     
     

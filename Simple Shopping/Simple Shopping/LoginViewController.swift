@@ -127,6 +127,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             self.Username.text = ""
                             self.Password.text = ""
+                            let alert = UIAlertController(title: "Incorrect Password", message: "Please enter valid login credentials.", preferredStyle: .alert)
+                            let cancel = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                            }
+                            alert.addAction(cancel)
+                            self.present(alert, animated: true, completion: nil)
                         }
                     })
                 }
