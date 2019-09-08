@@ -36,11 +36,17 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             ref.child("users").childByAutoId().setValue(["email": username, "password": password, "name": name])
             data.loggedin = true
             data.name = name
+            data.email = username!
             saveData()
             self.performSegue(withIdentifier: "aftersignup", sender: self)
         } else {
             PasswordVerify.text = ""
             Password.text = ""
+            let alert = UIAlertController(title: "Match Error", message: "Entered passwords do not match.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            }
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
         }
     }
     

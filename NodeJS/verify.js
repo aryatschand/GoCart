@@ -23,9 +23,10 @@ var database = firebase.database();
 
 function checkCarts(){
     if (myVar.includes("Card NO: ")) {
-        myVar = myVar.substring(9);
+        myVar = myVar.substring(9).trim();
         submit();
     } else if(/\d/.test(myVar.charAt(0))){
+        myVar = myVar.trim();
         submit();
     }
 }

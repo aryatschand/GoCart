@@ -13,5 +13,5 @@ class ShoppingList: Codable {
     var names: [String] = []
     var price: [String] = []
     var url: [String] = []
-    var quantity: [String] = []
+    var inCart: [Bool] = []
 }

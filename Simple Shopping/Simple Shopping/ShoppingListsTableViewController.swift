@@ -114,7 +114,7 @@ class ShoppingListsTableViewController: UITableViewController {
         if segue.identifier == "newlist" {
             let ListProductsTableViewController = segue.destination as! ListProductsTableViewController
             var selectedIndexPath = tableView.indexPathForSelectedRow
-            ListProductsTableViewController.index = 0
+            ListProductsTableViewController.index = data.lists.count-1
             saveData()
         } else if segue.identifier == "select" {
             let ListProductsTableViewController = segue.destination as! ListProductsTableViewController

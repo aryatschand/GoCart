@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         var organizationKey: String = ""
         
-        var organizationName = "Simple Shopping"
+        var organizationName = "GoCart"
         
         self.ref.child("organizations").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -114,16 +114,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 for (key,values) in value! {
+                    self.data.userKey = key as! String
+                    self.saveData()
                     self.ref.child("users").child("\(key)").observeSingleEvent(of: .value, with: { (snapshot) in
                         let value2 = snapshot.value as? NSDictionary
                         if (value2?["password"] as! String) == password && (value2?["email"] as! String) == self.Username.text {
                             self.data.loggedin = true
                             self.data.name = value2?["name"] as! String
+                            self.data.email = value2?["email"] as! String
                             self.saveData()
                             self.performSegue(withIdentifier: "login", sender: self)
                         } else {
                             self.Username.text = ""
                             self.Password.text = ""
+                            let alert = UIAlertController(title: "Incorrect Password", message: "Please enter valid login credentials.", preferredStyle: .alert)
+                            let cancel = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                            }
+                            alert.addAction(cancel)
+                            self.present(alert, animated: true, completion: nil)
                         }
                     })
                 }
