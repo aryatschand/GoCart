@@ -219,7 +219,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
             }
         }
         
-        if data.lists.count > 0 {
+        if data.lists.count > 0 && index != -1{
             if data.lists[index].names.count > 0 {
                 var extra = list.names.count-data.lists[index].names.count
                 for var x in 0...extra {
@@ -328,13 +328,13 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
             ConnectBtn.title = "Connect"
             ConnectBtn.tintColor = view.tintColor
             ConnectBtn.isEnabled = true
-            serial.sendMessageToDevice("disconnect")
+            serial.sendMessageToDevice("DISCONNECT")
         } else {
             TitleLabel.title = "Bluetooth Serial"
             ConnectBtn.title = "Connect"
             ConnectBtn.tintColor = view.tintColor
             ConnectBtn.isEnabled = false
-            serial.sendMessageToDevice("disconnect")
+            serial.sendMessageToDevice("DISCONNECT")
         }
     }
     
