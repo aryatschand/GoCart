@@ -126,7 +126,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
         tableView.reloadData()
     }
     
-    func testingCarts(cart: String){
+    func testingCarts(cart: String, setVal: Bool){
         
         var cartName = cart
         
@@ -141,7 +141,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                 if(value2?["name"] as! String == cartName){
                
                     var cartKey = key as! String
-                    self.ref.child("carts").child(cartKey).child("purchased").setValue(true)
+                    self.ref.child("carts").child(cartKey).child("purchased").setValue(setVal)
        
                 }
                 
@@ -159,6 +159,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                     list.names.append(data.lists[index].names[x])
                     list.url.append(data.lists[index].url[x])
                     list.price.append(data.lists[index].price[x])
+                    list.inCart.append(false)
                 }
             }
             if temprfid.count > 0 {
@@ -175,6 +176,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                             for var z in 0...list.names.count-1 {
                                 if tempname == list.names[z] {
                                     list.names[z] = list.names[z] + "`"
+                                    list.inCart[z] = true
                                     found = true
                                 }
                             }
@@ -217,11 +219,11 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
             }
         }
         
-        list.inCart = []
         if data.lists.count > 0 {
-            if data.lists[index].names.count > 0   {
-                for var x in 0...data.lists[index].names.count {
-                    list.inCart.append(false)
+            if data.lists[index].names.count > 0 {
+                var extra = list.names.count-data.lists[index].names.count
+                for var x in 0...extra {
+                    list.inCart.append(true)
                 }
             }
         }
@@ -235,10 +237,10 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                         totalprice += Double(list.price[x])!
                     }
                 }
-                
             }
             if totalprice > 0 {
-                PriceLabel.text = "Total Cost - $" + String(totalprice)
+                let x = Double(round(100*totalprice)/100)
+                PriceLabel.text = "Total Cost - $" + String(x)
             } else {
                 PriceLabel.text = "No items in cart"
             }
@@ -261,8 +263,11 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
         return false
     }
     
-    @IBAction func PayBtn(_ sender: Any) {
-        testingCarts(cart: serial.connectedPeripheral!.name!)
+    @IBAction func Payment(_ sender: Any) {
+        if ConnectBtn.title == "Disconnect" {
+            testingCarts(cart: serial.connectedPeripheral!.name!, setVal: true)
+        }
+        performSegue(withIdentifier: "pay", sender: self)
     }
     
     
@@ -314,6 +319,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
         if serial.isReady {
             TitleLabel.title = serial.connectedPeripheral!.name
             ConnectBtn.title = "Disconnect"
+            testingCarts(cart: serial.connectedPeripheral!.name!, setVal: false)
             ConnectBtn.tintColor = UIColor.red
             ConnectBtn.isEnabled = true
             serial.sendMessageToDevice("initialize")

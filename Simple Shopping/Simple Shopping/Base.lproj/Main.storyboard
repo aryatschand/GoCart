@@ -349,8 +349,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Pay" id="BUh-OT-7IB">
                                 <connections>
-                                    <action selector="PayBtn:" destination="gkX-5w-71f" id="oCX-6t-oS6"/>
-                                    <segue destination="4sd-wa-oPf" kind="show" id="LIe-4K-ON9"/>
+                                    <action selector="Payment:" destination="gkX-5w-71f" id="IHE-JP-maV"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Connect" id="hSL-he-a5G">
@@ -365,6 +364,7 @@
                         <outlet property="PriceLabel" destination="Evr-Aw-ECX" id="wx0-ih-Iqm"/>
                         <outlet property="TitleLabel" destination="3Fm-69-Jm5" id="88Y-Li-Icj"/>
                         <segue destination="veK-I1-lG2" kind="show" identifier="ShowScanner" id="FeM-F2-gRb"/>
+                        <segue destination="4sd-wa-oPf" kind="show" identifier="pay" id="GVZ-3n-745"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xt-Jb-wnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
