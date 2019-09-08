@@ -23,10 +23,13 @@
 		42A927BE23235ED80031A7B1 /* NewProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927BD23235ED80031A7B1 /* NewProductTableViewController.swift */; };
 		42A927C023235EF10031A7B1 /* SelectListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927BF23235EF10031A7B1 /* SelectListTableViewController.swift */; };
 		42A927C223235F020031A7B1 /* ShoppingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927C123235F020031A7B1 /* ShoppingTableViewController.swift */; };
-		42A927C423235F430031A7B1 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927C323235F430031A7B1 /* PaymentViewController.swift */; };
 		42A927C62323600D0031A7B1 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927C52323600D0031A7B1 /* ShoppingList.swift */; };
 		42A927CA2323644A0031A7B1 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927C92323644A0031A7B1 /* WelcomeViewController.swift */; };
 		42A927CF232418B00031A7B1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A927CE232418B00031A7B1 /* ProfileViewController.swift */; };
+		42A927DC23245B700031A7B1 /* IMG_3174.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42A927DB23245B700031A7B1 /* IMG_3174.jpg */; };
+		42A927E0232489800031A7B1 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A927DF232489800031A7B1 /* list.png */; };
+		42A927E423248AB30031A7B1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A927E323248AB30031A7B1 /* icon.png */; };
+		42A927EA23248CD20031A7B1 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A927E923248CD20031A7B1 /* home.png */; };
 		DDD3B580667ED0E932739233 /* Pods_Simple_Shopping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8840FDEE6FADD385D55B60AA /* Pods_Simple_Shopping.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,10 +54,14 @@
 		42A927BD23235ED80031A7B1 /* NewProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductTableViewController.swift; sourceTree = "<group>"; };
 		42A927BF23235EF10031A7B1 /* SelectListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectListTableViewController.swift; sourceTree = "<group>"; };
 		42A927C123235F020031A7B1 /* ShoppingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewController.swift; sourceTree = "<group>"; };
-		42A927C323235F430031A7B1 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		42A927C52323600D0031A7B1 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		42A927C92323644A0031A7B1 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = "/Users/AryaTschand/Documents/GitHub/GoCart/Simple Shopping/Simple Shopping/WelcomeViewController.swift"; sourceTree = "<absolute>"; };
 		42A927CE232418B00031A7B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		42A927D0232448500031A7B1 /* Simple Shopping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Simple Shopping.entitlements"; sourceTree = "<group>"; };
+		42A927DB23245B700031A7B1 /* IMG_3174.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_3174.jpg; path = ../../../../../Downloads/IMG_3174.jpg; sourceTree = "<group>"; };
+		42A927DF232489800031A7B1 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = ../../../../../Downloads/list.png; sourceTree = "<group>"; };
+		42A927E323248AB30031A7B1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../../../../Downloads/icon.png; sourceTree = "<group>"; };
+		42A927E923248CD20031A7B1 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = ../../../../../Downloads/home.png; sourceTree = "<group>"; };
 		478353647582C8CC80EB9345 /* Pods-Simple Shopping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Shopping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Simple Shopping/Pods-Simple Shopping.release.xcconfig"; sourceTree = "<group>"; };
 		7FDB7B86C896647226C438A6 /* Pods-Simple Shopping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Shopping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simple Shopping/Pods-Simple Shopping.debug.xcconfig"; sourceTree = "<group>"; };
 		8840FDEE6FADD385D55B60AA /* Pods_Simple_Shopping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Shopping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +108,11 @@
 		42480A592312C2F600F44102 /* Simple Shopping */ = {
 			isa = PBXGroup;
 			children = (
+				42A927DB23245B700031A7B1 /* IMG_3174.jpg */,
+				42A927DF232489800031A7B1 /* list.png */,
+				42A927E923248CD20031A7B1 /* home.png */,
+				42A927E323248AB30031A7B1 /* icon.png */,
+				42A927D0232448500031A7B1 /* Simple Shopping.entitlements */,
 				42480A5A2312C2F700F44102 /* AppDelegate.swift */,
 				4221F013231EC8060071013D /* SavedData.swift */,
 				42A927C52323600D0031A7B1 /* ShoppingList.swift */,
@@ -113,7 +125,6 @@
 				42A927BD23235ED80031A7B1 /* NewProductTableViewController.swift */,
 				42A927BF23235EF10031A7B1 /* SelectListTableViewController.swift */,
 				42A927C123235F020031A7B1 /* ShoppingTableViewController.swift */,
-				42A927C323235F430031A7B1 /* PaymentViewController.swift */,
 				42A927CE232418B00031A7B1 /* ProfileViewController.swift */,
 				4221F00F231EC5300071013D /* BluetoothSerial.swift */,
 				42480A5E2312C2F700F44102 /* Main.storyboard */,
@@ -172,6 +183,11 @@
 					42480A562312C2F600F44102 = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -198,8 +214,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A927E0232489800031A7B1 /* list.png in Resources */,
+				42A927DC23245B700031A7B1 /* IMG_3174.jpg in Resources */,
 				42480A652312C2F800F44102 /* LaunchScreen.storyboard in Resources */,
 				4221F00E231EC5280071013D /* GoogleService-Info.plist in Resources */,
+				42A927EA23248CD20031A7B1 /* home.png in Resources */,
+				42A927E423248AB30031A7B1 /* icon.png in Resources */,
 				42480A622312C2F800F44102 /* Assets.xcassets in Resources */,
 				42480A602312C2F700F44102 /* Main.storyboard in Resources */,
 			);
@@ -267,7 +287,6 @@
 				42A927CA2323644A0031A7B1 /* WelcomeViewController.swift in Sources */,
 				42A927C223235F020031A7B1 /* ShoppingTableViewController.swift in Sources */,
 				42A927C62323600D0031A7B1 /* ShoppingList.swift in Sources */,
-				42A927C423235F430031A7B1 /* PaymentViewController.swift in Sources */,
 				42A927BC23235EB70031A7B1 /* ListProductsTableViewController.swift in Sources */,
 				42480A5B2312C2F700F44102 /* AppDelegate.swift in Sources */,
 				42A927C023235EF10031A7B1 /* SelectListTableViewController.swift in Sources */,

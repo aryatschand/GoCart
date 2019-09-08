@@ -7,44 +7,270 @@
 //
 
 import UIKit
+import CoreBluetooth
+import QuartzCore
+import Firebase
+import CryptoSwift
 
-class ShoppingTableViewController: UITableViewController {
+enum MessageOption: Int {
+    case noLineEnding,
+    newline,
+    carriageReturn,
+    carriageReturnAndNewline
+}
 
+/// The option to add a \n to the end of the received message (to make it more readable)
+enum ReceivedMessageOption: Int {
+    case none,
+    newline
+}
+
+class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegate {
+    
     var dataArray = [SavedData]()
     var data: SavedData!
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Data.plist")
     var index = -1
     var list: ShoppingList = ShoppingList()
+    var temprfid: [String] = []
+    var ref: DatabaseReference!
+    
+    @IBOutlet weak var TitleLabel: UINavigationItem!
+    
+    @IBOutlet weak var ConnectBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var PriceLabel: UILabel!
+    
+    @IBAction func Connect(_ sender: Any) {
+        if serial.connectedPeripheral == nil {
+            performSegue(withIdentifier: "ShowScanner", sender: self)
+        } else {
+            serial.disconnect()
+            reloadView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        
+        serial = BluetoothSerial(delegate: self)
+        
+        // UI
+        //mainTextView.text = ""
+        reloadView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ShoppingTableViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
+        
+        // we want to be notified when the keyboard is shown (so we can move the textField up)
+        
+        // to dismiss the keyboard if the user taps outside the textField while editing
+        
+        // style the bottom UIView
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        // animate the text field to stay above the keyboard
+        var info = (notification as NSNotification).userInfo!
+        let value = info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardFrame = value.cgRectValue
+        
+        //TODO: Not animating properly
+        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions(), animations: { () -> Void in
+        }, completion: { Bool -> Void in
+            self.textViewScrollToBottom()
+        })
+    }
+    
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        // bring the text field back down..
+        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions(), animations: { () -> Void in
+        }, completion: nil)
         
     }
     
+    func textViewScrollToBottom() {
+        //let range = NSMakeRange(NSString(string: mainTextView.text).length - 1, 1)
+        //mainTextView.scrollRangeToVisible(range)
+    }
+    
+    func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
+        reloadView()
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        hud?.mode = MBProgressHUDMode.text
+        hud?.labelText = "Disconnected"
+        hud?.hide(true, afterDelay: 1.0)
+    }
+    
+    func serialDidChangeState() {
+        reloadView()
+        if serial.centralManager.state != .poweredOn {
+            let hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud?.mode = MBProgressHUDMode.text
+            hud?.labelText = "Bluetooth turned off"
+            hud?.hide(true, afterDelay: 1.0)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        //testingCarts(cart: "Cart 1")
         loadData()
         saveData()
         data = dataArray[0]
         list.name = "Shopping List"
-        print(index)
-        if index >= 0 {
-            for var x in 0...data.lists[index].names.count-1 {
-                list.names.append(data.lists[index].names[x])
-                list.url.append(data.lists[index].url[x])
-                list.price.append(data.lists[index].price[x])
-                list.quantity.append(data.lists[index].quantity[x])
-            }
-        }
+        reloadView()
         tableView.reloadData()
     }
     
+    func testingCarts(cart: String){
+        
+        var cartName = cart
+        
+        self.ref.child("carts").observeSingleEvent(of: .value, with: { (snapshot) in
+           
+            let value = snapshot.value as? NSDictionary
+            
+            for (key,values) in value! {
+                
+                let value2 = values as? NSDictionary
+        
+                if(value2?["name"] as! String == cartName){
+               
+                    var cartKey = key as! String
+                    self.ref.child("carts").child(cartKey).child("purchased").setValue(true)
+       
+                }
+                
+            }
+        })
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        list.names = []
+        list.price = []
+        list.quantity = []
+        list.url = []
+        if index >= 0 {
+            if data.lists[index].names.count > 0 {
+                for var x in 0...data.lists[index].names.count-1 {
+                    list.names.append(data.lists[index].names[x])
+                    list.url.append(data.lists[index].url[x])
+                    list.price.append(data.lists[index].price[x])
+                    list.quantity.append(data.lists[index].quantity[x])
+                }
+            }
+            if temprfid.count > 0 {
+                for var x in 0...temprfid.count-1 {
+                    var tempname: String
+                    var tempprice: String
+                    var tempurl: String
+                    for var y in 0...data.idArray.count-1 {
+                        if temprfid[x] == data.idArray[y] + "\r\n" {
+                            tempname = data.nameArray[y]
+                            tempprice = data.priceArray[y]
+                            tempurl = data.urlArray[y]
+                            var found: Bool = false
+                            for var z in 0...list.names.count-1 {
+                                if tempname == list.names[z] {
+                                    list.names[z] = list.names[z] + "`"
+                                    found = true
+                                }
+                            }
+                            if found == false {
+                                if verifyUrl(urlString: tempurl) == true {
+                                    
+                                } else  {
+                                    tempurl = tempurl.substring(to: tempurl.index(before: tempurl.endIndex))
+                                }
+                                list.quantity.append("1")
+                                list.names.append(tempname)
+                                list.url.append(tempurl)
+                                list.price.append(tempprice)
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if temprfid.count > 0 {
+                for var x in 0...temprfid.count-1 {
+                    var tempname: String
+                    var tempprice: String
+                    var tempurl: String
+                    for var y in 0...data.idArray.count-1 {
+                        if temprfid[x] == data.idArray[y] + "\r\n"{
+                            tempname = data.nameArray[y]
+                            tempprice = data.priceArray[y]
+                            tempurl = data.urlArray[y]
+                            if verifyUrl(urlString: tempurl) == true {
+                                
+                            } else  {
+                                tempurl = tempurl.substring(to: tempurl.index(before: tempurl.endIndex))
+                            }
+                            list.quantity.append("1")
+                            list.names.append(tempname)
+                            list.url.append(tempurl)
+                            list.price.append(tempprice)
+                        }
+                    }
+                }
+            }
+        }
+        
+        var totalprice: Double = 0
+        if list.names.count > 0 {
+            for var x in 0...list.names.count-1 {
+                list.price[x].remove(at: list.price[x].startIndex)
+                totalprice += Double(list.price[x])! * Double(list.quantity[x])!
+            }
+            PriceLabel.text = "Total Cost - $" + String(totalprice)
+        } else {
+            PriceLabel.text = "No Items"
+        }
         return list.names.count
     }
+    
+    func verifyUrl (urlString: String?) -> Bool {
+        //Check for nil
+        if let urlString = urlString {
+            // create NSURL instance
+            if let url = NSURL(string: urlString) {
+                // check if your application can open the NSURL instance
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
+    
+    @IBAction func PayBtn(_ sender: Any) {
+        testingCarts(cart: serial.connectedPeripheral!.name!)
+    }
+    
     
     // Populate rows and delete a player if the information is incomplete
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath)
+        
+        if list.names[indexPath.row].last == "`" {
+            list.names[indexPath.row] = list.names[indexPath.row].substring(to: list.names[indexPath.row].index(before: list.names[indexPath.row].endIndex))
+            cell.backgroundColor = UIColor.green
+        } else {
+            var found = false
+            for var x in 0...data.lists[index].names.count-1 {
+                if data.lists[index].names[x] == list.names[indexPath.row] {
+                    found = true
+                }
+            }
+            if found == true {
+                cell.backgroundColor = UIColor.red
+            } else {
+            }
+        }
         
         if indexPath.row < list.url.count {
             let url = URL(string: list.url[indexPath.row])!
@@ -58,6 +284,77 @@ class ShoppingTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    @objc func reloadView() {
+        // in case we're the visible view again
+        serial.delegate = self
+        
+        if serial.isReady {
+            TitleLabel.title = serial.connectedPeripheral!.name
+            ConnectBtn.title = "Disconnect"
+            ConnectBtn.tintColor = UIColor.red
+            ConnectBtn.isEnabled = true
+            serial.sendMessageToDevice("initialize")
+        } else if serial.centralManager.state == .poweredOn {
+            TitleLabel.title = "Bluetooth Serial"
+            ConnectBtn.title = "Connect"
+            ConnectBtn.tintColor = view.tintColor
+            ConnectBtn.isEnabled = true
+            serial.sendMessageToDevice("disconnect")
+        } else {
+            TitleLabel.title = "Bluetooth Serial"
+            ConnectBtn.title = "Connect"
+            ConnectBtn.tintColor = view.tintColor
+            ConnectBtn.isEnabled = false
+            serial.sendMessageToDevice("disconnect")
+        }
+    }
+    
+    func sendName(inputtemp2 : String) {
+        var inputtemp = inputtemp2
+        if inputtemp == "double" {
+            serial.sendMessageToDevice("Duplicate scan")
+        } else {
+            inputtemp = inputtemp.substring(to: inputtemp.index(before: inputtemp.endIndex))
+            var input = inputtemp
+            var index: Int = -1
+            for var x in 0...data.idArray.count-1 {
+                var testStr = String(data.idArray[x])
+                if testStr == input {
+                    index = x
+                    break
+                }
+            }
+            if index != -1 {
+                print(data.nameArray[index])
+                serial.sendMessageToDevice(data.nameArray[index])
+                serial.sendMessageToDevice(",")
+                serial.sendMessageToDevice(String(data.priceArray[index]))
+                serial.sendMessageToDevice(",")
+                serial.sendMessageToDevice("notpurchased")
+                serial.sendMessageToDevice(",")
+                serial.sendMessageToDevice("noerror")
+            } else {
+                serial.sendMessageToDevice("Item not found")
+            }
+        }
+        
+    }
+    
+    func serialDidReceiveString(_ message: String) {
+        // add the received text to the textView, optionally with a line break at the end
+        print(message)
+        if !temprfid.contains(message) {
+            temprfid.append(message)
+            sendName(inputtemp2: message)
+        } else {
+            sendName(inputtemp2: "double")
+        }
+        
+        let pref = UserDefaults.standard.integer(forKey: ReceivedMessageOptionKey)
+        //if pref == ReceivedMessageOption.newline.rawValue { mainTextView.text! += "\n" }
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -91,3 +388,4 @@ class ShoppingTableViewController: UITableViewController {
     }
 
 }
+
