@@ -19,18 +19,18 @@ async function runOnce() {
     let userListener = await firebase.database().ref(`adminUsers/${sessionStorage.getItem('userKey')}/password`);
     await userListener.on('value', async function (snapshot) {
         myVal = await snapshot.val();
-        if (myVal != "") {
-            verifyPassword = document.createElement("input");
-            verifyPassword.type = "password";
-            verifyPassword.class = "input";
-            verifyPassword.id = "oldPassword";
-            verifyPassword.placeholder = "Existing password"
-            document.getElementById("addVerifyPassword").appendChild(verifyPassword);
-            googleUser = false;
-        } else {
-            googleUser = true;
-        }
     });
+    if (myVal != "") {
+        verifyPassword = document.createElement("input");
+        verifyPassword.type = "password";
+        verifyPassword.class = "input";
+        verifyPassword.id = "oldPassword";
+        verifyPassword.placeholder = "Existing password"
+        document.getElementById("addVerifyPassword").appendChild(verifyPassword);
+        googleUser = false;
+    } else {
+        googleUser = true;
+    }
 
     // let myVal = await database.child(`adminUsers/${sessionStorage.getItem('userKey')}`)
     // myVal = await myVal.val();
@@ -42,19 +42,26 @@ async function resetPassword() {
     event.preventDefault();
     if (!googleUser) {
         let userListener = await firebase.database().ref(`adminUsers/${sessionStorage.getItem('userKey')}/password`);
+        let successful = false;
         await userListener.on('value', async function (snapshot) {
             myVal = await snapshot.val();
-            if (hash(document.getElementById("oldPassword").value) != myVal) {
+            console.log(hash(document.getElementById("oldPassword").value));
+            console.log(myVal);
+            if (bcrypt.compareSync(hash(document.getElementById("oldPassword").value), myVal)) {
                 alert("Incorrect old password");
             } else if (document.querySelector("#passwordInput").value.length < 6) {
                 alert("Your password needs to be at least 6 characters.");
             } else if (document.querySelector("#passwordInput").value != document.querySelector("#passwordConfirm").value) {
                 alert('Your passwords don\'t match.');
             } else {
-                firebase.database().ref(`adminUsers/${sessionStorage.getItem('userKey')}/password`).set(hash(document.querySelector("#passwordInput").value));
-                alert("You have successfully changed your password!");
+                successful = true;
             }
         });
+        if (successful) {
+            await firebase.database().ref(`adminUsers/${sessionStorage.getItem('userKey')}/password`).set(hash(document.querySelector("#passwordInput").value));
+            alert("You have successfully changed your password!");
+            return;
+        }
     } else {
         if (document.querySelector("#passwordInput").value.length < 6) {
             alert("Your password needs to be at least 6 characters.");
@@ -96,7 +103,6 @@ async function addUserWithGoogle() {
     event.preventDefault();
     let tableElement = document.createElement("tr");
     tableElement.classList.add('addTable');
-    let nameElement = document.createElement("th");
     let emailElement = document.createElement("th");
     let actions = document.createElement("th");
     let cancel = document.createElement("button");
@@ -105,19 +111,14 @@ async function addUserWithGoogle() {
     let submit = document.createElement("button");
     submit.innerText = "Submit";
     submit.classList.add('submit');
-    let nameElementAddField = document.createElement("input");
-    nameElementAddField.classList.add('nameElementAddField');
-    nameElementAddField.placeholder = "Name";
     let emailElementAddField = document.createElement("input");
     emailElementAddField.classList.add('emailElementAddField');
     emailElementAddField.placeholder = "Email address";
-    nameElement.appendChild(nameElementAddField);
     emailElement.appendChild(emailElementAddField);
     submit.style.marginBottom = "5px";
     submit.style.marginRight = "5px";
     actions.appendChild(submit);
     actions.appendChild(cancel);
-    tableElement.appendChild(nameElement);
     tableElement.appendChild(emailElement);
     tableElement.appendChild(actions);
     // addItemsHere.appendChild(tableElement);
@@ -125,58 +126,36 @@ async function addUserWithGoogle() {
     document.getElementById('addButton').style.display = "none";
     document.getElementById('addButton2').style.display = "none";
     document.querySelector('.cancel').addEventListener('click', cancelAdd);
-    document.querySelector('.submit').addEventListener('click', addItemWithGoogleSubmit);
+    document.querySelector('.submit').addEventListener('click', addUserWithGoogleSubmit);
 }
 
 function cancelAdd() {
     event.preventDefault();
     let newRow = document.querySelector('.addTable');
-    document.getElementById('addItemsHere').removeChild(newRow);
+    document.getElementById('addUsersHere').removeChild(newRow);
     document.getElementById('addButton').style.display = "block";
     document.getElementById('addButton2').style.display = "block";
 }
 
-async function addItemWithGoogleSubmit() {
+async function addUserWithGoogleSubmit() {
     event.preventDefault();
-    let email = document.querySelector('.emailElementAddField').value;
-    let myVal = await database.child(`organizations/${sessionStorage.getItem('organizationKey')}/rfidKeys`).orderByChild('rfidTag').equalTo(newTagNum).once("value");
+    let newEmail = document.querySelector('.emailElementAddField').value;
+    let myVal = await database.child(`adminUsers`).orderByChild('email').equalTo(newEmail).once("value");
     myVal = myVal.val();
     if (myVal) {
-        alert(`RFID Tag # ${newTagNum} is already in your inventory.`);
-    } else if (!(/^\d+$/.test(document.querySelector(".rfidTagAddField").value))) {
-        alert(`Please enter a valid RFID tag number.`);
-    } else if (document.querySelector(".productNameAddField").value == "") {
-        alert(`Please enter a valid product name.`);
-    } else if (!(/^(\$)?\d+(\.\d\d)?$/.test(document.querySelector(".priceAddField").value))) {
-        alert(`Please enter a valid price in the format 0 or 0.00.`);
-    } else if (!((/.png$/.test(document.querySelector(".imageAddField").value)) || (/.jpg$/.test(document.querySelector(".imageAddField").value)) || (/.jpeg$/.test(document.querySelector(".imageAddField").value)) || document.querySelector(".imageAddField").value == "")) {
-        alert(`Please enter a valid image url that ends in .png, .jpg, or .jpeg.`);
+        alert(`This email address already has an account.`);
     } else {
         let newRow = document.querySelector('.addTable');
-        let myImage;
-        if (document.querySelector(".imageAddField").value == "") {
-            myImage = "https://www.gocartapp.tech/assets/noProductImage.png";
-        } else {
-            myImage = document.querySelector(".imageAddField").value;
-        }
-        let myPrice;
-        if (!(/^\$\d+(\.\d\d)?$/.test(document.querySelector(".priceAddField").value))) {
-            myPrice = "$" + document.querySelector(".priceAddField").value;
-        } else {
-            myPrice = document.querySelector(".priceAddField").value;
-        }
         let value = {
-            rfidTag: document.querySelector(".rfidTagAddField").value,
-            productName: document.querySelector(".productNameAddField").value,
-            price: myPrice,
-            productImage: myImage,
-            inCart: false,
-            purchased: false
+            email: newEmail,
+            password: "",
         }
         database.child(`organizations/${sessionStorage.getItem('organizationKey')}/rfidKeys`).push(value);
-        document.getElementById('addItemsHere').removeChild(newRow);
-        addButton.style.display = "block";
+        document.getElementById('addUsersHere').removeChild(newRow);
+        document.getElementById('addButton').style.display = "block";
+        document.getElementById('addButton2').style.display = "block";
     }
+
 }
 
 function hash(value) {

@@ -30,6 +30,7 @@ while (count2<100){
   SoundBeep, 750, 250
   count2++
 }
+count2 = 0
 }
 count++
 }
