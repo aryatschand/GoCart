@@ -13,7 +13,10 @@ class ListProductsTableViewController: UITableViewController {
     var dataArray = [SavedData]()
     var data: SavedData!
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Data.plist")
-    var index = 0
+    var index = -1
+    
+    @IBOutlet weak var titleLabel: UINavigationItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,6 @@ class ListProductsTableViewController: UITableViewController {
             let delete = UIAlertAction(title: "Delete", style: .default, handler: { (action) in
                 self.data.lists[self.index].names.remove(at: indexPath.row)
                 self.data.lists[self.index].price.remove(at: indexPath.row)
-                self.data.lists[self.index].quantity.remove(at: indexPath.row)
                 self.data.lists[self.index].url.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.saveData()
@@ -44,6 +46,7 @@ class ListProductsTableViewController: UITableViewController {
         saveData()
         data = dataArray[0]
         tableView.reloadData()
+        titleLabel.title = data.lists[index].name
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,7 +58,6 @@ class ListProductsTableViewController: UITableViewController {
         data.lists[index].names.append("")
         data.lists[index].url.append("")
         data.lists[index].price.append("")
-        data.lists[index].quantity.append("")
         performSegue(withIdentifier: "new", sender: self)
         saveData()
         
@@ -66,15 +68,16 @@ class ListProductsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath)
        
         if indexPath.row < data.lists[index].url.count {
-            let url = URL(string: data.lists[index].url[indexPath.row])!
-            let dataa = try? Data(contentsOf: url)
-            print(url)
-            if let imageData = dataa {
-                let imagee = UIImage(data: imageData)
-                cell.imageView?.image = imagee
+            if data.lists[index].url[indexPath.row] != "" {
+                let url = URL(string: data.lists[index].url[indexPath.row])!
+                let dataa = try? Data(contentsOf: url)
+                if let imageData = dataa {
+                    let imagee = UIImage(data: imageData)
+                    cell.imageView?.image = imagee
+                }
             }
             cell.textLabel?.textAlignment = .left
-            cell.textLabel?.text = data.lists[index].names[indexPath.row] + " x" + data.lists[index].quantity[indexPath.row] + " " + data.lists[index].price[indexPath.row]
+            cell.textLabel?.text = data.lists[index].names[indexPath.row] + " - " + data.lists[index].price[indexPath.row]
         }
         
         return cell

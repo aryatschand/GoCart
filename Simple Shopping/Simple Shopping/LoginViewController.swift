@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         var organizationKey: String = ""
         
-        var organizationName = "Simple Shopping"
+        var organizationName = "GoCart"
         
         self.ref.child("organizations").observeSingleEvent(of: .value, with: { (snapshot) in
             

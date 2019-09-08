@@ -33,6 +33,17 @@ class NewProductTableViewController: UITableViewController, UISearchBarDelegate 
         tableView.reloadData()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.SearchBar.showsCancelButton = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         loadData()
         saveData()
@@ -43,6 +54,13 @@ class NewProductTableViewController: UITableViewController, UISearchBarDelegate 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if data.lists[index].names[data.lists[index].names.count-1] == "" {
+            data.lists[index].names.remove(at: data.lists[index].names.count-1)
+        }
+        saveData()
     }
     
     // Populate rows and delete a player if the information is incomplete
@@ -58,7 +76,6 @@ class NewProductTableViewController: UITableViewController, UISearchBarDelegate 
         }
         
         let url = URL(string: data.urlArray[find])!
-        print(url)
         let dataa = try? Data(contentsOf: url)
         
         if let imageData = dataa {
@@ -90,27 +107,8 @@ class NewProductTableViewController: UITableViewController, UISearchBarDelegate 
         var find: Int = data.nameArray.index(of: filteredData[indexPath.row])!
         data.lists[index].price[data.lists[index].names.count-1] = (data.priceArray[find])
         data.lists[index].url[data.lists[index].names.count-1] = (data.urlArray[find])
-        let alert = UIAlertController(title: "Add Product", message: "How many do you want to add?", preferredStyle: .alert)
-        
-        
-        //2. Add the text field. You can configure it however you need.
-        alert.addTextField { (textField) in
-            textField.text = "1"
-        }
-        
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            self.saveData()
-            self.data.lists[self.index].quantity[self.data.lists[self.index].names.count-1] = textField!.text!
-            self.saveData()
-            _ = self.navigationController?.popViewController(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-        }))
-        
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+        saveData()
+        _ = self.navigationController?.popViewController(animated: true)
         
         saveData()
     }

@@ -46,7 +46,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         loadData()
         saveData()
         data = dataArray[0]
-        Welcome.text = "Welcome to the Go Cart app, " + data.name + "!"
+        Welcome.text = data.name
         saveData()
     }
     

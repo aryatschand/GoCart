@@ -118,7 +118,6 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //testingCarts(cart: "Cart 1")
         loadData()
         saveData()
         data = dataArray[0]
@@ -153,7 +152,6 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         list.names = []
         list.price = []
-        list.quantity = []
         list.url = []
         if index >= 0 {
             if data.lists[index].names.count > 0 {
@@ -161,7 +159,6 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                     list.names.append(data.lists[index].names[x])
                     list.url.append(data.lists[index].url[x])
                     list.price.append(data.lists[index].price[x])
-                    list.quantity.append(data.lists[index].quantity[x])
                 }
             }
             if temprfid.count > 0 {
@@ -187,7 +184,6 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                                 } else  {
                                     tempurl = tempurl.substring(to: tempurl.index(before: tempurl.endIndex))
                                 }
-                                list.quantity.append("1")
                                 list.names.append(tempname)
                                 list.url.append(tempurl)
                                 list.price.append(tempprice)
@@ -212,7 +208,6 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                             } else  {
                                 tempurl = tempurl.substring(to: tempurl.index(before: tempurl.endIndex))
                             }
-                            list.quantity.append("1")
                             list.names.append(tempname)
                             list.url.append(tempurl)
                             list.price.append(tempprice)
@@ -222,15 +217,34 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
             }
         }
         
+        list.inCart = []
+        if data.lists.count > 0 {
+            if data.lists[index].names.count > 0   {
+                for var x in 0...data.lists[index].names.count {
+                    list.inCart.append(false)
+                }
+            }
+        }
+        
         var totalprice: Double = 0
         if list.names.count > 0 {
             for var x in 0...list.names.count-1 {
                 list.price[x].remove(at: list.price[x].startIndex)
-                totalprice += Double(list.price[x])! * Double(list.quantity[x])!
+                if list.inCart.count > x {
+                    if list.inCart[x] == true {
+                        totalprice += Double(list.price[x])!
+                    }
+                }
+                
             }
-            PriceLabel.text = "Total Cost - $" + String(totalprice)
+            if totalprice > 0 {
+                PriceLabel.text = "Total Cost - $" + String(totalprice)
+            } else {
+                PriceLabel.text = "No items in cart"
+            }
+            
         } else {
-            PriceLabel.text = "No Items"
+            PriceLabel.text = "No items in cart"
         }
         return list.names.count
     }
@@ -256,19 +270,26 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath)
         
+        var back: Int = 0
+        
         if list.names[indexPath.row].last == "`" {
             list.names[indexPath.row] = list.names[indexPath.row].substring(to: list.names[indexPath.row].index(before: list.names[indexPath.row].endIndex))
             cell.backgroundColor = UIColor.green
+            list.inCart[indexPath.row] = true
         } else {
             var found = false
-            for var x in 0...data.lists[index].names.count-1 {
-                if data.lists[index].names[x] == list.names[indexPath.row] {
-                    found = true
+            if index != -1 {
+                if data.lists[index].names.count > 0 {
+                    for var x in 0...data.lists[index].names.count-1 {
+                        if data.lists[index].names[x] == list.names[indexPath.row] {
+                            found = true
+                        }
+                    }
+                    if found == true {
+                        cell.backgroundColor = UIColor.red
+                        list.inCart[indexPath.row] = false
+                    }
                 }
-            }
-            if found == true {
-                cell.backgroundColor = UIColor.red
-            } else {
             }
         }
         
@@ -280,7 +301,7 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                 cell.imageView?.image = imagee
             }
             cell.textLabel?.textAlignment = .left
-            cell.textLabel?.text = list.names[indexPath.row] + " x" + list.quantity[indexPath.row] + " " + list.price[indexPath.row]
+            cell.textLabel?.text = list.names[indexPath.row] + " - $" + list.price[indexPath.row]
         }
         
         return cell
