@@ -34,3 +34,4 @@ count2 = 0
 }
 count++
 }
+Esc::ExitApp
