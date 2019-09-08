@@ -45,6 +45,8 @@ async function resetPassword() {
         let successful = false;
         await userListener.on('value', async function (snapshot) {
             myVal = await snapshot.val();
+            console.log(hash(document.getElementById("oldPassword").value));
+            console.log(myVal);
             if (bcrypt.compareSync(hash(document.getElementById("oldPassword").value), myVal)) {
                 alert("Incorrect old password");
             } else if (document.querySelector("#passwordInput").value.length < 6) {
