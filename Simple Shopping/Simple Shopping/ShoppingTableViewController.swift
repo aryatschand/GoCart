@@ -236,13 +236,6 @@ class ShoppingTableViewController: UITableViewController, BluetoothSerialDelegat
                             finished = false
                         }
                     }
-                    if finished == true {
-                        let alert = UIAlertController(title: "List Complete", message: "You have everything from your shopping list.", preferredStyle: .alert)
-                        let cancel = UIAlertAction(title: "OK", style: .cancel) { (action) in
-                        }
-                        alert.addAction(cancel)
-                        present(alert, animated: true, completion: nil)
-                    }
                 }
             }
         } else if data.lists.count > 0  {
