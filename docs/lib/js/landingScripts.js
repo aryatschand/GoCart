@@ -24,6 +24,53 @@ function removeAllConfirmation(){
     }
 }
 
+async function makeObjectRequestSearch(searchTerm, req, res) {
+
+    var req = unirest("GET", `https://api.cognitive.microsoft.com/bing/v7.0/search?q=${searchTerm}`);
+  
+    req.query({
+    });
+  
+    req.headers({
+      "Ocp-Apim-Subscription-Key": "7f33227b18134a1f9a4d34bb805b360a",
+      "Content-Type": "application/json"
+    });
+  
+  
+    var outputString = ""
+    await req.end(async function (res) {
+      var sortedURLArray = [];
+      var sortedNameArray = [];
+      var sortedRatingArray = [];
+      for (var x = 0; x < res.body.webPages.value.length; x++) {
+        var score = checkSentiment(res.body.webPages.value[x].name);
+        if (x < 5) {
+          sortedURLArray.push(res.body.webPages.value[x].url)
+          sortedNameArray.push(res.body.webPages.value[x].name)
+          sortedRatingArray.push(score)
+        } else {
+          if (score > sortedRatingArray[4]) {
+            sortedURLArray[4] = res.body.webPages.value[x].url
+            sortedNameArray[4] = res.body.webPages.value[x].name
+            sortedRatingArray[4] = score
+          }
+        }
+      }
+      searchURL1 = sortedURLArray[0];
+      searchURL2 = sortedURLArray[1];
+      searchURL3 = sortedURLArray[2];
+      searchURL4 = sortedURLArray[3];
+      searchURL5 = sortedURLArray[4];
+      await sendMessage(
+        "\nPress 1 to view " + sortedNameArray[0] +
+        "\n\nPress 2 to view " + sortedNameArray[1] +
+        "\n\nPress 3 to view " + sortedNameArray[2] +
+        "\n\nPress 4 to view " + sortedNameArray[3] +
+        "\n\nPress 5 to view " + sortedNameArray[4], req, res)
+    });
+  
+  }
+
 
 document.querySelector("#manageCartsButton").addEventListener("click", manageCartsRedirect);
 
